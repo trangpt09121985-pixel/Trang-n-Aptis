@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aptis Dashboard – Ôn thi chứng chỉ Aptis | Phạm Thị Thu Trang</title>
+<meta name="description" content="Dashboard ôn thi Aptis General: Speaking (chấm điểm AI), Writing, Reading, Listening, Grammar & Vocabulary, đề thi hoàn chỉnh và mẹo thi.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#/">
+      <span class="brand-logo">A</span>
+      <span><b>Aptis Dashboard</b><small>Phạm Thị Thu Trang</small></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#/" data-r="home"><i>🏠</i>Tổng quan</a>
+      <a href="#/structure" data-r="structure"><i>🗂️</i>Cấu trúc đề thi</a>
+      <div class="nav-sep">Kỹ năng</div>
+      <a href="#/speaking" data-r="speaking" class="c-speaking"><i>🎤</i>Speaking <em>AI</em></a>
+      <a href="#/writing" data-r="writing" class="c-writing"><i>✍️</i>Writing</a>
+      <a href="#/reading" data-r="reading" class="c-reading"><i>📖</i>Reading</a>
+      <a href="#/listening" data-r="listening" class="c-listening"><i>🎧</i>Listening</a>
+      <a href="#/core" data-r="core" class="c-core"><i>🧩</i>Grammar &amp; Vocab</a>
+      <div class="nav-sep">Tài nguyên</div>
+      <a href="#/tips" data-r="tips"><i>💡</i>Mẹo thi Aptis</a>
+      <a href="#/library" data-r="library"><i>📚</i>Tài liệu gốc</a>
+      <a href="#/settings" data-r="settings"><i>⚙️</i>Cài đặt</a>
+    </nav>
+    <div class="side-foot">Dữ liệu tiến độ lưu trên trình duyệt của bạn.</div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="Mở menu">☰</button>
+      <div class="crumbs" id="crumbs"></div>
+      <div class="top-right" id="topRight"></div>
+    </header>
+    <div id="view" class="view"></div>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="data/speaking-tests.js"></script>
+<script src="data/writing-tests.js"></script>
+<script src="data/reading-tests.js"></script>
+<script src="data/listening-tests.js"></script>
+<script src="data/core-tests.js"></script>
+<script src="data/lessons.js"></script>
+<script src="data/tips.js"></script>
+<script src="data/library.js"></script>
+<script src="js/core.js"></script>
+<script src="js/scorer.js"></script>
+<script src="js/speaking.js"></script>
+<script src="js/writing.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/pages.js"></script>
+</body>
+</html>
