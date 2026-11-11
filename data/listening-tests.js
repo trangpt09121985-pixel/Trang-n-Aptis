@@ -64,7 +64,7 @@ window.LISTENING_TESTS = [
   { type: "opinion", title: "Part 3 – Opinion matching (Questions 15–16)",
     instr: "Listen to two people discussing a topic. Decide whose opinion matches each statement: the man, the woman, or both.",
     dialogs: [
-     { topic: "The Internet", mnemonic: "Woo Bin Mới Bệnh → W B M B",
+     { topic: "The Internet (luyện tập)", mnemonic: "Hội thoại luyện tập do GV soạn. Đáp án đề thật của chủ đề này: xem mục Ngân hàng đề thật Part 3.",
        script: [
         {sp:"M",t:"Did you see that report? Children now spend about six hours a day online."},
         {sp:"W",t:"I'm not surprised. Honestly, I think the internet has made people less patient. Everyone wants answers in two seconds."},
@@ -79,7 +79,7 @@ window.LISTENING_TESTS = [
         { s: "The internet is a valuable way to learn.", answer: "B", ev: [2,3], explain: "Nam: 'an amazing tool for learning'; nữ: 'I agree with you there' → CẢ HAI (Both)." },
         { s: "Online privacy is a serious concern.", answer: "M", ev: [4,5], explain: "Nam lo về quyền riêng tư; nữ 'I don't really mind that' → chỉ NAM (Man)." },
         { s: "Young children need limits on internet use.", answer: "B", ev: [6,7], explain: "Nam: 'parents should set limits'; nữ: 'Absolutely' → CẢ HAI." } ] },
-     { topic: "Art", mnemonic: "Vẽ Một Ban Mới → W M B M",
+     { topic: "Art (luyện tập)", mnemonic: "Hội thoại luyện tập do GV soạn. Đáp án đề thật của chủ đề này: xem mục Ngân hàng đề thật Part 3.",
        script: [
         {sp:"W",t:"I went to the new modern art exhibition yesterday. I thought the paintings were really exciting."},
         {sp:"M",t:"Really? I saw some photos online. To me, they looked like something a child could do."},
@@ -185,7 +185,7 @@ window.LISTENING_TESTS = [
   { type: "opinion", title: "Part 3 – Opinion matching (Questions 15–16)",
     instr: "Listen to two people discussing a topic. Decide whose opinion matches each statement: the man, the woman, or both.",
     dialogs: [
-     { topic: "Studying at home", mnemonic: "Vừa Mệt Mà Bổ → W M M B",
+     { topic: "Studying at home (luyện tập)", mnemonic: "Hội thoại luyện tập do GV soạn. Đáp án đề thật của chủ đề này: xem mục Ngân hàng đề thật Part 3.",
        script: [
         {sp:"W",t:"My company is offering online courses now instead of classroom training. I think studying from home saves so much time."},
         {sp:"M",t:"That's true for you, but I find it really hard to concentrate at home. There's always something to distract me."},
@@ -199,7 +199,7 @@ window.LISTENING_TESTS = [
         { s: "It is difficult to concentrate at home.", answer: "M", ev: [1,2], explain: "Nam khó tập trung; nữ 'I'm the opposite' → chỉ NAM." },
         { s: "Having a teacher present is important.", answer: "M", ev: [3,4], explain: "Nam nhớ việc có giáo viên trực tiếp; nữ cho rằng gửi email là đủ → chỉ NAM." },
         { s: "Online courses should cost less.", answer: "B", ev: [5,6], explain: "Nam đề xuất, nữ 'Definitely' → CẢ HAI." } ] },
-     { topic: "Beauty", mnemonic: "Muốn Vào Bệnh Viện → M W B W",
+     { topic: "Beauty (luyện tập)", mnemonic: "Hội thoại luyện tập do GV soạn. Đáp án đề thật của chủ đề này: xem mục Ngân hàng đề thật Part 3.",
        script: [
         {sp:"M",t:"My sister spends a fortune on beauty products. I think most of them are a complete waste of money."},
         {sp:"W",t:"Some are, I suppose. But good skincare really does make a difference, especially sun cream. My skin is much better since I started using it."},

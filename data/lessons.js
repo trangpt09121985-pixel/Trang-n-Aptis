@@ -134,6 +134,34 @@ window.LESSONS = [
 <details><summary>Câu chuyện 3: Một ngày đặc biệt</summary><p class="ex">Last weekend, I visited a museum. I saw an impressive painting there. At the gift shop, I couldn't buy the book I wanted because it was too expensive. Later, I watched a memorable sports event on TV – it was an extreme sport, rock climbing. I met new people, including a friendly foreigner from England. We talked about books and travel. That evening, I read an interesting book she gave me. It was a wonderful and memorable day.</p><p class="tags"><span>saw an impressive work of art</span><span>couldn't buy what you wanted</span><span>attended a memorable sports event</span><span>watched an extreme sport</span><span>met new people</span><span>talked to a foreigner</span><span>read an interesting book</span></p></details>
 <details><summary>Câu chuyện 4: Chuyến đi Đà Nẵng</summary><p class="ex">Last summer, I visited an amusement park in Da Nang with my family. It was very big, with green trees and many swimming pools. My husband taught me how to swim. I was very excited because I had never been there. In the evening, I used the internet to send all my photos to my mother by email. It was amazing.</p><p class="tags"><span>was surrounded by nature</span><span>visited a new place</span><span>visited an amusement park</span><span>learned a new skill</span><span>used the Internet</span></p></details>` },
 
+{ id: "sp-p2-phrases", skill: "speaking", icon: "🧩", title: "Mẫu câu tả tranh Part 2 theo nhóm",
+  html: `
+<p>Nguồn: <i>Speaking Part 2 – Sp P2 picture (Ms Mai Hien)</i> và <i>speaking P2 thực hành</i>. Học thuộc 1–2 câu mỗi nhóm là đủ để tả mọi bức tranh trong 45 giây.</p>
+<div class="grid2">
+<div class="mini"><b>👥 Tả người (ai, tuổi, quan hệ)</b><p class="ex">In the picture, I can see some people. They are about 20 years old. I think they are friends.</p><p class="ex">In the picture, I can see two people, a man and a woman. They are about 40 years old. I think they are a couple.</p><p class="ex">In the picture, I can see a girl. She is about 20 years old. She looks young and beautiful.</p></div>
+<div class="mini"><b>🏃 Hành động + nơi chốn</b><p class="ex">They are relaxing on the beach.</p><p class="ex">They are playing sports in the park.</p><p class="ex">They are sitting at the table and talking.</p><p class="ex">They are having a meeting.</p></div>
+<div class="mini"><b>👕 Trang phục</b><p class="ex">They are wearing casual clothes.</p><p class="ex">They are wearing formal clothes.</p><p class="ex">He is wearing a T-shirt and a pair of jeans.</p><p class="ex">They are wearing uniforms.</p></div>
+<div class="mini"><b>🙂 Cảm xúc người trong tranh</b><p class="ex">They look excited.</p><p class="ex">He looks happy.</p><p class="ex">She looks focused.</p></div>
+<div class="mini"><b>🪑 Đồ vật xung quanh</b><p class="ex">On the table, I can see some food and drink.</p><p class="ex">On the wall, I can see some pictures.</p><p class="ex">Behind them, I can see some plants and decorations.</p><p class="ex">Around them, I can see many trees.</p></div>
+<div class="mini"><b>☀️ Thời tiết</b><p class="ex">The weather is very nice. It is sunny and perfect for outdoor activities.</p><p class="ex">The weather is very hot. The sun is shining.</p><p class="ex">The weather is very cold because I can see a lot of snow and the people are wearing warm clothes.</p></div>
+<div class="mini"><b>🏞️ Background</b><p class="ex">In the background of the picture, I can see many people.</p><p class="ex">In the background of the picture, I can see mountains and trees.</p><p class="ex">In the background of the picture, I can see some buildings.</p></div>
+<div class="mini"><b>💬 Cảm xúc của người nói</b><p class="ex">I like this picture because it reminds me of my childhood. When I was small, I liked playing games with my friends.</p><p class="ex">I like this picture because it reminds me of my friends. We often go out together.</p></div>
+</div>
+<h4>Bài mẫu từ “Sp P12 practice” (Test 1)</h4>
+<figure class="fig"><img src="assets/img/real/mh1.jpg" alt="Đồng nghiệp họp trong văn phòng"></figure>
+<p class="ex">In the picture, I can see some people. They are about 40. I think they are co-workers. They are having a meeting in an office. Some of them are sitting at a table. Some of them are standing. They are wearing formal clothes. They look happy. On the table, I can see some laptops. Behind them, I can see a whiteboard. I like this picture because they look professional.</p>` },
+
+{ id: "sp-p3-formula", skill: "speaking", icon: "🏝️", title: "Công thức trả lời Part 3 (địa điểm)",
+  html: `
+<p>Nguồn: <i>Part 3 – công thức trả lời</i>. Dạng đề so sánh 2 địa điểm rất hay gặp.</p>
+<div class="grid2"><figure class="fig"><img src="assets/img/lessons/p3-island.jpg" alt="Hòn đảo"><figcaption>Tranh 1: hòn đảo</figcaption></figure><figure class="fig"><img src="assets/img/lessons/p3-snow.jpg" alt="Phố tuyết"><figcaption>Tranh 2: con phố có tuyết</figcaption></figure></div>
+<h4>Câu 1 – Tell me what you see in the two pictures</h4>
+<p class="ex">The two pictures show different places. In the first picture, I can see an island. It is beautiful and quiet. There are some buildings surrounded by many trees. The water is clear and the sky is blue. The weather is very nice. It is sunny. In the second picture, I can see a street and buildings. There are two cars parking on the street. The weather is very cold because I can see a lot of snow on the ground.</p>
+<p class="tags"><span>beautiful</span><span>quiet</span><span>peaceful</span><span>exciting</span><span>busy</span><span>convenient</span><span>expensive</span><span>noisy</span><span>crowded</span><span>air / weather / people / food / cost of living</span></p>
+<h4>Câu 2 – Where do you prefer to live? / What are the attractions (benefits, differences) of these places?</h4>
+<p class="ex">Both places have different attractions, depending on people's interests, budgets and situations. Some people like to live in a big city because it is convenient. For me, I prefer to live on the island because it is stunning and peaceful. The air is fresh. The people are friendly and kind. The food is delicious, healthy and cheap.</p>
+<h4>Câu 3 – People like to live in different places. What do you think?</h4>
+<p class="ex">People may have different ideas about this. For me, I strongly agree with the idea. People like to live in different places because it is convenient for them. Besides, they have different interests, budgets and situations. For example, young people like to live in big cities because they can find good jobs. Old people like to live in the countryside because it is quiet and good for their health.</p>` },
 /* ================= WRITING ================= */
 { id: "wr-overview", skill: "writing", icon: "🗺️", title: "Tổng quan Writing & thang điểm",
   html: `
@@ -229,6 +257,20 @@ Mary</pre></div></div>
 <p class="ex">I don't like living in a big city because it is expensive, crowded, noisy and polluted. It is not good for our health.</p>
 <div id="adj-exercise"></div>` },
 
+{ id: "gv-relative", skill: "core", icon: "🔗", title: "Mệnh đề quan hệ (who / which / where) – nâng điểm Writing & Speaking",
+  html: `
+<p>Nguồn: <i>Relative clauses (Ms Mai Hien)</i>. Mệnh đề quan hệ giúp gộp hai câu đơn thành một câu phức – tiêu chí “range of grammar” khi chấm Writing và Speaking.</p>
+<table class="tbl"><thead><tr><th>Đại từ</th><th>Dùng cho</th><th>Câu cơ bản → câu nâng cấp</th></tr></thead><tbody>
+<tr><td><b>who</b></td><td>người</td><td><span class="ex">We should invite an artist who is famous.</span><br>→ <span class="ex">It is advisable for us to invite a famous artist who is really interested in this project.</span></td></tr>
+<tr><td><b>who</b></td><td>người</td><td><span class="ex">She is a beautiful girl who comes from England.</span><br>→ <span class="ex">She is a gorgeous girl who has long hair and black eyes.</span></td></tr>
+<tr><td><b>which</b></td><td>vật, sự việc</td><td><span class="ex">I like the photo which is on the wall.</span><br>→ <span class="ex">I really like the photo which was taken two months ago.</span></td></tr>
+<tr><td><b>, which</b></td><td>bổ sung thông tin (có dấu phẩy)</td><td><span class="ex">We should promote the event on Facebook, which is popular.</span><br>→ <span class="ex">I suggest promoting the event on social networking sites, especially Facebook, which is the most popular with people of all ages.</span></td></tr>
+<tr><td><b>which</b></td><td>nơi chốn (như vật)</td><td><span class="ex">Halong Bay is a famous place which is beautiful.</span><br>→ <span class="ex">Halong Bay is a well-known travel destination which attracts millions of people to come here on holiday.</span></td></tr>
+<tr><td><b>where</b></td><td>nơi chốn (= in which)</td><td><span class="ex">I love my hometown which is peaceful.</span><br>→ <span class="ex">I really love my hometown, where I was born and grew up with my beloved people.</span></td></tr>
+<tr><td><b>, which</b></td><td>thay cho cả mệnh đề trước</td><td><span class="ex">I won the first prize, which surprised everyone.</span></td></tr>
+</tbody></table>
+<div class="callout">✍️ Mẹo dùng trong email Part 4: <i>We should invite Mr David, <b>who</b> won the first prize this year.</i> · <i>We can post photos on Facebook, <b>which</b> can reach more people.</i></div>
+<div id="rel-quiz"></div>` },
 { id: "gv-topics", skill: "core", icon: "🧠", title: "Buổi 2 – Từ vựng theo 9 chủ đề",
   html: `
 <table class="tbl"><thead><tr><th>Chủ đề</th><th>Cụm từ</th><th>Câu mẫu</th></tr></thead><tbody>
@@ -270,4 +312,12 @@ window.EDING_QUIZ = [
  { q: "Listening to music is ___ .", options: ["relaxing", "relaxed"], answer: 0, ex: "Việc nghe nhạc mang lại sự thư giãn → relaxing." },
  { q: "He is ___ in history books.", options: ["interested", "interesting"], answer: 0, ex: "be interested in = quan tâm, thích (cảm xúc của người)." },
  { q: "The result was ___ . We expected more.", options: ["disappointing", "disappointed"], answer: 0, ex: "Kết quả là sự việc gây thất vọng → disappointing." }
+];
+window.REL_QUIZ = [
+ { q: "We should invite an expert ___ has a lot of experience.", options: ["who", "which", "where"], answer: 0, ex: "Thay cho người (an expert) → who." },
+ { q: "I really like the photo ___ was taken last summer.", options: ["which", "who", "where"], answer: 0, ex: "Thay cho vật (the photo) → which." },
+ { q: "Hoi An is the town ___ I spent my childhood.", options: ["where", "which", "who"], answer: 0, ex: "Nơi chốn + mệnh đề đầy đủ (I spent…) → where." },
+ { q: "We can promote the event on Facebook, ___ is popular with young people.", options: ["which", "that", "who"], answer: 0, ex: "Mệnh đề không xác định (sau dấu phẩy) không dùng that → which." },
+ { q: "My mother, ___ is a teacher, always supports me.", options: ["who", "which", "whose"], answer: 0, ex: "Người + mệnh đề bổ sung có dấu phẩy → who." },
+ { q: "I passed the exam, ___ made my parents very proud.", options: ["which", "who", "that"], answer: 0, ex: "', which' thay cho cả mệnh đề trước (việc tôi thi đỗ)." }
 ];

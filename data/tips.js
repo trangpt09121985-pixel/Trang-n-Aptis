@@ -31,7 +31,8 @@ window.TIPS = [
    "Part 2: tìm 'dấu nối' – đại từ (he, it, this, these), mạo từ the (thông tin đã nhắc), từ nối (However, Instead, After that), mốc thời gian.",
    "Part 3: đọc hết 4 ý kiến trước khi trả lời; câu hỏi luôn diễn đạt lại (paraphrase) chứ không lặp nguyên văn.",
    "Part 4: đọc câu đầu và câu cuối mỗi đoạn để nắm ý chính; cẩn thận với tiêu đề chỉ đúng một chi tiết nhỏ – luôn có 1 tiêu đề thừa.",
-   "Phân bổ thời gian: Part 1–2 khoảng 10 phút, Part 3–4 khoảng 25 phút."
+   "Phân bổ thời gian: Part 1–2 khoảng 10 phút, Part 3–4 khoảng 25 phút.",
+   "Theo tài liệu đề thật: Part 3 đáp án hay bị tráo vị trí người A–D, nên phải hiểu nội dung từng đoạn chứ không chỉ nhớ thứ tự; Part 4 thường lấy 1 trong 13 chủ đề đã tổng hợp (Zoo, Coffee, Tulips, Charles Dickens…)."
  ]},
  { icon: "🎧", title: "Listening", color: "blue", items: [
    "Mỗi đoạn được nghe tối đa 2 lần. Đọc câu hỏi và phương án TRƯỚC khi bấm nghe.",
@@ -39,6 +40,8 @@ window.TIPS = [
    "Part 2: ghi nhanh từ khóa của từng người nói; luôn có 2 thông tin thừa.",
    "Part 3: 'Both' chỉ đúng khi người còn lại đồng ý rõ ràng (I agree, Absolutely, Definitely). 'Maybe', 'If you say so', 'That's true for you' KHÔNG phải đồng ý.",
    "Part 4: câu hỏi về thái độ/ý kiến; đáp án thường nằm ở phần sau của bài nói (Personally…, However…).",
+   "Theo tài liệu đề thật: Part 1 chọn 13 câu từ ngân hàng khoảng 145 câu (giờ, số, ngày, địa điểm, đồ uống, phương tiện…); Part 4 chọn 2 trong khoảng 23 chủ đề – nên học thuộc ý chính ở mục Ngân hàng đề thật.",
+   "Part 2 hay bị tráo thứ tự 4 người A–D; Part 3 hay bị tráo giọng nam – nữ (đáp án Both giữ nguyên). Đừng chỉ học thuộc thứ tự – phải nghe để xác nhận.",
    "Bảng ghi nhớ Part 3 theo chủ đề (bên dưới) chỉ là công cụ tham khảo do học viên sưu tầm; đề thật có thể thay đổi, vẫn phải nghe để xác nhận."
  ]},
  { icon: "🧩", title: "Grammar & Vocabulary", color: "amber", items: [

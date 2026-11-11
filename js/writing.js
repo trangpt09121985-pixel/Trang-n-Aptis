@@ -7,12 +7,12 @@ route("writing", (view, args) => {
   const icons = { art: "🎨", book: "📚", business: "💼", car: "🚗", college: "🎓", community: "🏘️", computer: "💻", debate: "🗣️", english: "🇬🇧", fashion: "👗", film: "🎬", fitness: "🏋️", food: "🍲", home: "🏠", museum: "🏛️", music: "🎵", nature: "🌿", photography: "📷", power: "💪", reading: "📖", science: "🔬", social: "🤝", technology: "📱", television: "📺", travel: "✈️", walking: "🚶" };
   const ic = t => icons[t.title.toLowerCase().split(" ")[0]] || "✍️";
   view.innerHTML = `
-  <div class="page-head t-writing"><div class="ico tinted">✍️</div><div><h1>Writing – 32 đề có đáp án mẫu</h1>
-  <p>Mỗi đề gồm đủ 4 phần như đề thật (5 tin nhắn · form 20–30 từ · 3 câu chat 30–40 từ · 2 email). Bài làm được đếm từ, kiểm tra bố cục, phát hiện lỗi và đối chiếu bài mẫu từ tài liệu "Đáp án 32 đề Aptis Writing".</p></div></div>
+  <div class="page-head t-writing"><div class="ico tinted">✍️</div><div><h1>Writing – ${WRITING_TESTS.length} đề có bài mẫu</h1>
+  <p>32 đề đủ 4 phần + 7 đề bổ sung (Beautiful Homes, Gardening, Cinema, English v3–v4, Design, Exercise). Mỗi đề gồm các phần như đề thật (5 tin nhắn · form 20–30 từ · 3 câu chat 30–40 từ · 2 email). Bài làm được đếm từ, kiểm tra bố cục, phát hiện lỗi và đối chiếu bài mẫu từ tài liệu "Đáp án 32 đề Aptis Writing".</p></div></div>
   <div class="sec-title"><h2>📘 Bài học</h2></div>
   <div class="lesson-list t-writing">${LESSONS.filter(l => l.skill === "writing").map(l => `<a href="#/writing/lesson/${l.id}"><span class="em">${l.icon}</span><span><b>${h(l.title)}</b></span><span class="done">${Store.data.lessons[l.id] ? '<span class="pill good">✓ Đã học</span>' : ""}</span></a>`).join("")}</div>
-  <div class="sec-title"><h2>📝 32 đề Writing</h2><span class="pill">${done}/32 đã làm</span></div>
-  <div class="tiles t-writing">${WRITING_TESTS.map(t => { const r = Store.data.results[t.id]; return `<a class="tile" href="#/writing/test/${t.id}"><div class="thumb">${ic(t)}</div><div class="tb"><b>${h(t.id.replace("W", "Đề "))}: ${h(t.title)}</b><small>${h(t.p2.q.slice(0, 48))}…</small><br>${r ? `<span class="pill good">Tốt nhất ${r.best}/50 · ${cefrOf("writing", r.best)}</span>` : `<span class="pill">Chưa làm</span>`}</div></a>`; }).join("")}</div>`;
+  <div class="sec-title"><h2>📝 ${WRITING_TESTS.length} đề Writing</h2><span class="pill">${done}/${WRITING_TESTS.length} đã làm</span></div>
+  <div class="tiles t-writing">${WRITING_TESTS.map(t => { const r = Store.data.results[t.id]; return `<a class="tile" href="#/writing/test/${t.id}"><div class="thumb">${ic(t)}</div><div class="tb"><b>${h(t.id.replace("W", "Đề "))}: ${h(t.title)}</b><small>${h((t.p2?.q || t.p4[0].email.slice(1).join(' ')).slice(0, 48))}…</small>${t.gv ? ' <span class="tag-sup">Bài mẫu GV soạn</span>' : ''}${t.src && !t.gv ? ' <span class="tag-sup">Mới</span>' : ''}<br>${r ? `<span class="pill good">Tốt nhất ${r.best}/50 · ${cefrOf("writing", r.best)}</span>` : `<span class="pill">Chưa làm</span>`}</div></a>`; }).join("")}</div>`;
 });
 
 function wrRunner(view, t) {
@@ -20,11 +20,13 @@ function wrRunner(view, t) {
   crumbs([["Tổng quan", "#/"], ["Writing", "#/writing"], [t.title, ""]]);
   const club = t.title.replace(/\s*\(.*\)/, "");
   const st = { p1: t.p1.map(() => ""), p2: "", p3: t.p3.map(() => ""), v: 0, e1: "", e2: "", res: {} };
+  const HAS = [t.p1.length > 0, !!t.p2, t.p3.length > 0, t.p4.length > 0, true];
   const saved = Store.data.drafts?.[t.id]; if (saved) Object.assign(st, saved, { res: {} });
   const persist = () => { Store.data.drafts ||= {}; Store.data.drafts[t.id] = { p1: st.p1, p2: st.p2, p3: st.p3, v: st.v, e1: st.e1, e2: st.e2 }; Store.save(); };
   let timer; onLeave(() => timer && timer.stop());
   view.innerHTML = `<div class="exam-bar t-writing"><b>✍️ ${h(t.title)}</b><span class="timer" id="tm">50:00</span><button class="btn sm" id="tStart">▶ Bấm giờ 50 phút</button><span class="spacer"></span><button class="btn sm primary" id="submitAll">📊 Nộp bài & chấm toàn bộ</button></div>
-  <div class="tabs" id="tabs">${["Part 1", "Part 2", "Part 3", "Part 4", "Kết quả"].map((x, i) => `<button data-t="${i}" class="${i ? "" : "on"}">${x}</button>`).join("")}</div><div id="pane"></div>`;
+  ${t.gv ? `<div class="callout small">📝 Đề lấy từ tài liệu "${h(t.src)}". Đề gốc chưa có đáp án nên bài mẫu do giáo viên soạn theo khung email của Ms Mai Hien.${!t.p1.length ? " Tài liệu gốc chỉ có một số phần – các phần không có sẽ được ẩn." : ""}</div>` : ""}
+  <div class="tabs" id="tabs">${["Part 1", "Part 2", "Part 3", "Part 4", "Kết quả"].map((x, i) => HAS[i] ? `<button data-t="${i}">${x}</button>` : "").join("")}</div><div id="pane"></div>`;
   $("#tStart").onclick = () => { timer && timer.stop(); timer = countdown(50 * 60, l => { $("#tm").textContent = fmtTime(l); $("#tm").classList.toggle("low", l < 300); }, () => { toast("Hết giờ! Hệ thống tự chấm bài."); submitAll(); }); $("#tStart").textContent = "↺ Bấm lại"; };
   $$("#tabs button").forEach(b => b.onclick = () => tab(+b.dataset.t));
   $("#submitAll").onclick = () => submitAll();
@@ -93,8 +95,8 @@ function wrRunner(view, t) {
   }
   function submitAll() {
     timer && timer.stop();
-    st.res.p1 = Scorer.writingP1(st.p1);
-    st.res.p2 = Scorer.writingShort(st.p2, 20, 30, t.p2.q); st.res.p2.max = 5; st.res.p2.cefr = lvl(st.res.p2.score, 5);
+    st.res.p1 = HAS[0] ? Scorer.writingP1(st.p1) : null;
+    if (HAS[1]) { st.res.p2 = Scorer.writingShort(st.p2, 20, 30, t.p2.q); st.res.p2.max = 5; st.res.p2.cefr = lvl(st.res.p2.score, 5); } else st.res.p2 = null;
     st.res.p3 = t.p3.map((q, k) => { const r = Scorer.writingShort(st.p3[k], 30, 40, q.q); r.max = 5; r.cefr = lvl(r.score, 5); return r; });
     st.res.e1 = Scorer.writingEmail(st.e1, false); st.res.e2 = Scorer.writingEmail(st.e2, true);
     [st.res.e1, st.res.e2].forEach(r => { r.max = 6; r.cefr = lvl(r.score, 6); });
@@ -103,20 +105,21 @@ function wrRunner(view, t) {
   function summaryPane() {
     const P = $("#pane");
     if (!st.res.e2) { P.innerHTML = `<div class="card"><p>Bấm <b>📊 Nộp bài & chấm toàn bộ</b> để xem điểm tổng.</p></div>`; return; }
-    const p1 = st.res.p1.score / 3, p2 = st.res.p2.score / 5, p3 = st.res.p3.reduce((a, r) => a + r.score, 0) / 15, p4 = (st.res.e1.score * 0.35 + st.res.e2.score * 0.65) / 6;
-    const scale = toScale(p1 * 0.1 + p2 * 0.2 + p3 * 0.3 + p4 * 0.4), lv = cefrOf("writing", scale);
+    const comp = [[HAS[0], 0.1, () => st.res.p1.score / 3], [HAS[1], 0.2, () => st.res.p2.score / 5], [HAS[2], 0.3, () => st.res.p3.reduce((a, r) => a + r.score, 0) / (5 * st.res.p3.length)], [true, 0.4, () => (st.res.e1.score * 0.35 + st.res.e2.score * 0.65) / 6]].filter(c => c[0]);
+    const wsum = comp.reduce((a, c) => a + c[1], 0);
+    const scale = toScale(comp.reduce((a, c) => a + c[1] * c[2](), 0) / wsum), lv = cefrOf("writing", scale);
     Store.result(t.id, { skill: "writing", title: t.title, scale, cefr: lv });
     P.innerHTML = `<div class="card t-writing"><div class="result-banner"><div class="score-big" style="--p:${scale * 2};--c:var(--writing)"><span>${scale}<small>/ 50</small></span></div>
-      <div><h2 style="margin:0">Kết quả ${h(t.title)}</h2><p class="muted" style="margin:.2em 0">Điểm ước lượng theo trọng số Part 1 (10%), Part 2 (20%), Part 3 (30%), Part 4 (40%).</p><span class="pill good">Trình độ ước lượng: ${lv}</span> <span class="pill">Ngưỡng B1 = 26 · B2 = 40</span></div></div>
+      <div><h2 style="margin:0">Kết quả ${h(t.title)}</h2><p class="muted" style="margin:.2em 0">Điểm ước lượng theo trọng số Part 1 (10%), Part 2 (20%), Part 3 (30%), Part 4 (40%)${HAS.slice(0, 3).every(Boolean) ? "" : " – tính lại theo các phần có trong đề"}.</p><span class="pill good">Trình độ ước lượng: ${lv}</span> <span class="pill">Ngưỡng B1 = 26 · B2 = 40</span></div></div>
       <table class="tbl" style="margin-top:12px"><thead><tr><th>Phần</th><th>Điểm</th><th>Ghi chú</th></tr></thead><tbody>
-      <tr><td>Part 1</td><td><b>${st.res.p1.score}</b>/3</td><td>${st.res.p1.items.filter(x => x.ok).length}/5 câu đạt yêu cầu 1–5 từ</td></tr>
-      <tr><td>Part 2</td><td><b>${st.res.p2.score}</b>/5</td><td>${st.res.p2.words} từ</td></tr>
-      <tr><td>Part 3</td><td><b>${(st.res.p3.reduce((a, r) => a + r.score, 0) / 3).toFixed(1)}</b>/5</td><td>${st.res.p3.map(r => r.words + " từ").join(" · ")}</td></tr>
+      ${HAS[0] ? `<tr><td>Part 1</td><td><b>${st.res.p1.score}</b>/3</td><td>${st.res.p1.items.filter(x => x.ok).length}/5 câu đạt yêu cầu 1–5 từ</td></tr>` : ""}
+      ${HAS[1] ? `<tr><td>Part 2</td><td><b>${st.res.p2.score}</b>/5</td><td>${st.res.p2.words} từ</td></tr>` : ""}
+      ${HAS[2] ? `<tr><td>Part 3</td><td><b>${(st.res.p3.reduce((a, r) => a + r.score, 0) / st.res.p3.length).toFixed(1)}</b>/5</td><td>${st.res.p3.map(r => r.words + " từ").join(" · ")}</td></tr>` : ""}
       <tr><td>Part 4 – thân mật</td><td><b>${st.res.e1.score}</b>/6</td><td>${st.res.e1.words} từ</td></tr>
       <tr><td>Part 4 – trang trọng</td><td><b>${st.res.e2.score}</b>/6</td><td>${st.res.e2.words} từ</td></tr></tbody></table>
       <p class="small muted">Mở từng tab Part để xem nhận xét chi tiết và bài mẫu. Bài làm được lưu tự động trên trình duyệt.</p>
       <div class="row"><button class="btn" id="clear">🗑 Xoá bài làm, làm lại</button><a class="btn" href="#/writing">← Danh sách đề</a></div></div>`;
-    $("#clear").onclick = () => { Object.assign(st, { p1: t.p1.map(() => ""), p2: "", p3: t.p3.map(() => ""), e1: "", e2: "", res: {} }); persist(); tab(0); };
+    $("#clear").onclick = () => { Object.assign(st, { p1: t.p1.map(() => ""), p2: "", p3: t.p3.map(() => ""), e1: "", e2: "", res: {} }); persist(); tab(HAS.indexOf(true)); };
   }
-  tab(0);
+  tab(HAS.indexOf(true));
 }

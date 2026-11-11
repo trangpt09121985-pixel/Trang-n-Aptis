@@ -82,7 +82,7 @@ function markEvidence(container, text) {
 
 /* ================= READING ================= */
 route("reading", (view, args) => {
-  if (args[0] === "test") return readingTest(view, READING_TESTS.find(t => t.id === args[1]));
+  if (args[0] === "test") return readingTest(view, READING_TESTS.concat(READING_BANK).find(t => t.id === args[1]));
   skillHome(view, "reading", READING_TESTS, {
     title: "Reading – Đọc hiểu", desc: "2 đề hoàn chỉnh theo đúng 4 phần của đề thật (35 phút). Sau mỗi câu có giải thích bằng tiếng Việt và câu bằng chứng được tô vàng ngay trong bài đọc.",
     count: () => 29,
@@ -90,13 +90,18 @@ route("reading", (view, args) => {
     <tr><td>Part 1</td><td>Sentence comprehension – chọn từ điền vào 5 chỗ trống (3 lựa chọn)</td><td>5</td></tr>
     <tr><td>Part 2</td><td>Text cohesion – sắp xếp câu thành đoạn văn (2 bài, câu đầu cho sẵn)</td><td>2 × 5</td></tr>
     <tr><td>Part 3</td><td>Opinion matching – ghép 7 nhận định với 4 người</td><td>7</td></tr>
-    <tr><td>Part 4</td><td>Long text – chọn tiêu đề cho 7 đoạn (8 tiêu đề, 1 thừa)</td><td>7</td></tr></tbody></table>`
+    <tr><td>Part 4</td><td>Long text – chọn tiêu đề cho 7 đoạn (8 tiêu đề, 1 thừa)</td><td>7</td></tr></tbody></table>`,
+    extra: bankTiles("reading", READING_BANK, "Ngân hàng đề thật Reading (từ tài liệu “reading aptis”)", "Luyện theo đáp án đề thật: Part 1 điền từ (12 bộ), Part 2 sắp xếp câu, Part 3 ghép ý kiến (13 chủ đề, có đoạn văn), Part 4 nhớ thứ tự tiêu đề (13 chủ đề).") +
+      `<div class="card" style="margin-top:12px"><h3>🗝️ Bộ gợi ý nhớ nhanh (không đủ dữ liệu để làm bài)</h3><table class="tbl"><tbody>${READING_BANK_HINTS.map(x => `<tr><td>${h(x.title)}</td><td><b>${h(x.key)}</b></td></tr>`).join("")}</tbody></table></div>`
   });
 });
+function bankTiles(skill, list, title, desc) {
+  return `<div class="sec-title"><h2>🏛️ ${h(title)}</h2></div><p class="muted small" style="margin-top:-6px">${h(desc)}</p><div class="tiles t-${skill}">${list.map(t => { const r = Store.data.results[t.id]; return `<a class="tile" href="${t.href || "#/" + skill + "/test/" + t.id}"><div class="thumb">${t.icon || "🏛️"}</div><div class="tb"><b>${h(t.title)}</b><small>${t.parts ? t.parts.length + " bài" : ""}</small><br>${r ? `<span class="pill good">Tốt nhất ${r.best}/50</span>` : `<span class="pill">Chưa làm</span>`}</div></a>`; }).join("")}</div>`;
+}
 function readingTest(view, test) {
   if (!test) return go("#/reading");
   quizRunner(view, "reading", test, Q => test.parts.map((p, pi) => {
-    const P = { title: p.title, instr: p.instr, short: p.title.split("–")[0].trim() + (p.title.includes("Task") ? " " + p.title.match(/Task \d/)[0].replace("Task ", "T") : "") };
+    const P = { title: p.title, instr: p.instr, short: test.bank ? String(pi + 1) : p.title.split("–")[0].trim() + (p.title.includes("Task") ? " " + p.title.match(/Task \d/)[0].replace("Task ", "T") : "") };
     if (p.type === "gap") {
       P.mount = (body) => {
         const sels = [];
@@ -113,10 +118,11 @@ function readingTest(view, test) {
     if (p.type === "order") {
       P.mount = (body) => {
         const ord = shuffledIdx(p.sentences.length, test.id + "ord" + pi);
-        body.innerHTML = `<div class="order-list"><div class="order-item first"><span class="pill">1</span>${h(p.first)}</div>${ord.map(si => `<div class="order-item" data-si="${si}"><select><option value="">Vị trí</option>${p.sentences.map((_, k) => `<option value="${k}">${k + 2}</option>`).join("")}</select><span>${h(p.sentences[si])}</span></div>`).join("")}</div><div class="explain"></div>`;
+        const off = p.first ? 2 : 1;
+        body.innerHTML = `<div class="order-list">${p.first ? `<div class="order-item first"><span class="pill">1</span>${h(p.first)}</div>` : ""}${ord.map(si => `<div class="order-item" data-si="${si}"><select><option value="">Vị trí</option>${p.sentences.map((_, k) => `<option value="${k}">${k + off}</option>`).join("")}</select><span>${h(p.sentences[si])}</span></div>`).join("")}</div><div class="explain"></div>`;
         const rows = $$(".order-item[data-si]", body), ex = $(".explain", body);
         const rv = () => { rows.forEach(r => { const s = $("select", r), ok = s.value !== "" && +s.value === +r.dataset.si; r.classList.toggle("right", ok); r.classList.toggle("wrong", s.value !== "" && !ok); });
-          ex.className = "explain show ok"; ex.innerHTML = `<b>🔗 Thứ tự đúng & dấu hiệu liên kết:</b><ol start="1" style="margin:6px 0 0;padding-left:20px"><li>${h(p.first)}</li>${p.sentences.map((s, k) => `<li><b>${h(s)}</b><br><span class="muted">${h(p.clues[k])}</span></li>`).join("")}</ol>`; };
+          ex.className = "explain show ok"; ex.innerHTML = `<b>🔗 Thứ tự đúng & dấu hiệu liên kết:</b><ol start="1" style="margin:6px 0 0;padding-left:20px">${p.first ? `<li>${h(p.first)}</li>` : ""}${p.sentences.map((s, k) => `<li><b>${h(s)}</b><br><span class="muted">${h(p.clues[k])}</span></li>`).join("")}</ol>`; };
         rows.forEach(r => { const s = $("select", r); s.onchange = () => { Q.onChange(); if (Q.instant && rows.every(x => $("select", x).value !== "")) rv(); };
           Q.items.push({ part: P, correct: () => s.value !== "" && +s.value === +r.dataset.si, answered: () => s.value !== "" }); });
         P.reveal = () => { rv(); rows.forEach(r => $("select", r).disabled = true); };
@@ -153,7 +159,7 @@ function readingTest(view, test) {
 
 /* ================= LISTENING ================= */
 route("listening", (view, args) => {
-  if (args[0] === "test") return listeningTest(view, LISTENING_TESTS.find(t => t.id === args[1]));
+  if (args[0] === "test") return listeningTest(view, LISTENING_TESTS.concat(listeningBankTests()).find(t => t.id === args[1]));
   skillHome(view, "listening", LISTENING_TESTS, {
     title: "Listening – Nghe hiểu", desc: "2 đề hoàn chỉnh (40 phút). Âm thanh được đọc bằng giọng máy của trình duyệt, giọng nam/nữ riêng, giới hạn 2 lượt nghe như thi thật. Sau khi trả lời, lời thoại hiện ra với câu chứa đáp án được tô vàng.",
     count: t => t.parts.reduce((a, p) => a + (p.items ? (p.type === "monologue" ? p.items.length * 2 : p.items.length) : p.speakers ? p.speakers.length : p.dialogs.reduce((x, d) => x + d.items.length, 0)), 0),
@@ -163,28 +169,46 @@ route("listening", (view, args) => {
     <tr><td>Part 3</td><td>Opinion matching – ý kiến thuộc về Man / Woman / Both</td><td>2 × 4</td></tr>
     <tr><td>Part 4</td><td>Monologue – thái độ, ý định, quan điểm người nói</td><td>2 × 2</td></tr></tbody></table>
     <p class="small muted">Mẹo: âm thanh dùng giọng tiếng Anh có sẵn trên máy. Trên Windows/Chrome có giọng "Google UK English"; trên iPhone/Mac có "Daniel", "Serena"… Tốc độ đọc chỉnh trong <a href="#/settings">Cài đặt</a>.</p>`,
-    extra: mnemonicCard()
+    extra: bankTiles("listening", listeningBankTests(), "Ngân hàng đề thật Listening (từ tài liệu “aptis listening”)", "Part 1: 145 câu hỏi–đáp án đề thật · Part 2: 12 chủ đề có bài nghe 4 người · Part 3: 10 hội thoại theo đáp án đề thật · Part 4: 23 chủ đề – nhớ ý chính 2 câu hỏi.") + mnemonicCard() + part4KeyCard()
   });
 });
 function mnemonicCard() {
-  const key = k => k.split(" ").map(c => `<b class="${c}">${c}</b>`).join(" ");
-  return `<div class="sec-title"><h2>🧠 Bảng ghi nhớ Listening Part 3 (Man / Woman / Both)</h2></div>
-  <div class="card"><div class="grid g2"><div><p class="small">Bảng do học viên sưu tầm: mỗi cụm từ tiếng Việt mã hoá thứ tự đáp án 4 nhận định theo chủ đề. Giải mã theo chữ cái đầu: <b style="color:var(--listening)">M = Man</b>, <b style="color:var(--speaking)">W/V = Woman</b>, <b style="color:var(--good)">B = Both</b>.</p>
-  <div class="callout small">⚠️ Đây là mẹo truyền miệng, không phải tài liệu chính thức. Thứ tự nhận định trong đề thật có thể khác – luôn nghe để xác nhận. Hai hội thoại luyện tập trong mỗi đề Listening ở dashboard được biên soạn theo các chủ đề này để bạn luyện cách nghe "đồng ý / không đồng ý".</div>
-  <figure class="fig"><img src="assets/img/lessons/listening-p3-mnemonic.jpg" alt="Bảng ghi nhớ Listening Part 3"></figure></div>
-  <div><table class="tbl"><thead><tr><th>#</th><th>Chủ đề</th><th>Câu nhớ</th><th>Đáp án</th></tr></thead><tbody>${LISTENING_MNEMONIC.map(m => `<tr><td>${m.n}</td><td>${h(m.topic)}</td><td>${h(m.phrase)}</td><td class="mn-key">${key(m.key)}</td></tr>`).join("")}</tbody></table>
-  <button class="btn sm" id="mnQuiz" onclick="mnemonicQuiz()">🎲 Tự kiểm tra trí nhớ</button><div id="mnq"></div></div></div></div>`;
+  const key = k => k === "—" ? "—" : k.split(" ").map(c => `<b class="${c}">${c}</b>`).join(" ");
+  const MAP = { "1, 2": "Internet", "3, 4": "University", "5": "Actor", "7": "Arts", "9": "Urban farming", "10": "Politics", "13": "Technology", "14": "Workplace", "15": "Beauty" };
+  const rows = LISTENING_BANK.KEY3.map(k => { const old = LISTENING_MNEMONIC.find(m => MAP[m.n] === k.topic); return { topic: k.topic, real: k.key, num: k.num, phrase: old?.phrase || "", old: old?.key || "—" }; });
+  LISTENING_MNEMONIC.filter(m => !MAP[m.n]).forEach(m => rows.push({ topic: m.topic, real: "—", num: "", phrase: m.phrase, old: m.key }));
+  return `<div class="sec-title"><h2>🧠 Bảng đáp án Listening Part 3 (Man / Woman / Both)</h2></div>
+  <div class="card"><p class="small">Đối chiếu 2 nguồn học viên cung cấp: <b>“aptis listening / listening study”</b> (có đủ 4 nhận định, mã số M=1 · W=2 · B=3) và <b>bảng câu nhớ trong ảnh</b> (giải mã chữ cái đầu: M = Man, W/V = Woman, B = Both).</p>
+  <div class="callout small">⚠️ Theo tài liệu: <i>Hội đồng Anh rất hay tráo giọng nam – nữ; đáp án nào là Both thì luôn giữ nguyên</i>. Vì vậy hai nguồn lệch nhau ở một số chủ đề (đánh dấu ⚠). Luôn nghe để xác nhận ai nói ý nào; phần “Đề thật Part 3” trong ngân hàng đề dùng nguồn có đủ nhận định.</div>
+  <div class="grid" style="grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)"><div><table class="tbl"><thead><tr><th>Chủ đề</th><th>Đề thật</th><th>Mã số</th><th>Câu nhớ (ảnh)</th><th>Giải mã ảnh</th><th></th></tr></thead><tbody>${rows.map(r => `<tr><td>${h(r.topic)}</td><td class="mn-key">${key(r.real)}</td><td>${h(r.num)}</td><td class="small">${h(r.phrase)}</td><td class="mn-key">${key(r.old)}</td><td>${r.real !== "—" && r.old !== "—" ? (r.real === r.old ? "✅" : "⚠️") : ""}</td></tr>`).join("")}</tbody></table>
+  <button class="btn sm" onclick="mnemonicQuiz()">🎲 Tự kiểm tra trí nhớ</button><div id="mnq"></div></div>
+  <div><figure class="fig"><img src="assets/img/lessons/listening-p3-mnemonic.jpg" alt="Bảng câu nhớ Listening Part 3"><figcaption>Bảng câu nhớ trong ảnh học viên gửi</figcaption></figure></div></div></div>`;
 }
 function mnemonicQuiz() {
-  const m = LISTENING_MNEMONIC[Math.floor(Math.random() * LISTENING_MNEMONIC.length)];
-  $("#mnq").innerHTML = `<div class="q"><div class="qt">Chủ đề <b>${h(m.topic)}</b> – thứ tự đáp án là gì?</div><input type="text" id="mni" placeholder="Ví dụ: W B M B"><div class="row" style="margin-top:6px"><button class="btn sm" id="mnc">Kiểm tra</button></div><div class="explain" id="mne"></div></div>`;
+  const K = LISTENING_BANK.KEY3[Math.floor(Math.random() * LISTENING_BANK.KEY3.length)];
+  const m = { topic: K.topic, key: K.key, phrase: "Mã số " + K.num };
+  $("#mnq").innerHTML = `<div class="q"><div class="qt">Chủ đề <b>${h(m.topic)}</b> (đề thật) – thứ tự đáp án là gì?</div><input type="text" id="mni" placeholder="Ví dụ: W B M B"><div class="row" style="margin-top:6px"><button class="btn sm" id="mnc">Kiểm tra</button></div><div class="explain" id="mne"></div></div>`;
   $("#mnc").onclick = () => { const v = $("#mni").value.toUpperCase().replace(/V/g, "W").replace(/[^MWB]/g, ""); const ok = v === m.key.replace(/ /g, ""); $("#mne").className = "explain show " + (ok ? "ok" : "no"); $("#mne").innerHTML = `${ok ? "✅ Chính xác!" : "❌ Chưa đúng."} ${h(m.phrase)} → <b>${m.key}</b>`; };
+}
+let _LB = null;
+function listeningBankTests() {
+  if (_LB) return _LB; const B = LISTENING_BANK;
+  const cats = [...new Set(B.P1.map(x => x.cat))];
+  const t1 = { id: "LB1", title: "Đề thật Part 1 – 145 câu hỏi/đáp án", time: 30, bank: true, icon: "🔢", parts: cats.map(c => ({ type: "flash", title: c, instr: "Câu hỏi đề thật (tiếng Việt) – chọn đáp án đúng. Trong phòng thi, câu hỏi và phương án hiện bằng tiếng Anh.", items: B.P1.filter(x => x.cat === c).map(x => ({ q: x.q, options: x.options, answer: 0, explain: "Đáp án đề thật: " + x.options[0] + "." })) })) };
+  const t2 = { id: "LB2", title: "Đề thật Part 2 – 12 chủ đề (có bài nghe)", time: 40, bank: true, icon: "🗣️", parts: B.P2 };
+  const t3 = { id: "LB3", title: "Đề thật Part 3 – 10 hội thoại Man/Woman/Both", time: 40, bank: true, icon: "👫", parts: B.P3.map(d => ({ type: "opinion", title: d.topic, instr: "Listen to two people discussing " + d.topic.toLowerCase() + ". Decide whose opinion matches each statement: the man, the woman, or both.", dialogs: [{ topic: d.topic, mnemonic: "Đáp án đề thật: " + d.key, script: d.script, items: d.items }] })) };
+  const allA = B.P4.flatMap(t => t.ans.map(a => a.en));
+  const t4 = { id: "LB4", title: "Đề thật Part 4 – 23 chủ đề (ý chính)", time: 20, bank: true, icon: "🎙️", parts: [{ type: "flash", title: "Part 4 – nhớ ý chính theo chủ đề", instr: "Mỗi chủ đề có 2 câu hỏi về thái độ/quan điểm người nói. Chọn ý chính là đáp án đề thật.", items: B.P4.flatMap((t, ti) => t.ans.map((a, k) => { const r = seedRand(t.topic + k); const others = allA.filter(x => x !== a.en).sort(() => r() - 0.5).slice(0, 2); return { q: `“${t.topic}” – câu hỏi ${k + 1}: ý chính là gì?`, options: [a.en, ...others], answer: 0, explain: `Đáp án đề thật: ${a.en}${a.vi ? " (" + a.vi.replace(/^-\s*/, "") + ")" : ""}.` }; })) }] };
+  return (_LB = [t1, t2, t3, t4]);
+}
+function part4KeyCard() {
+  return `<div class="sec-title"><h2>🎙️ Từ khóa đáp án Listening Part 4 (đề thật)</h2></div><div class="card"><p class="small muted">Nguồn: “aptis listening” và “listening study”. Đề thật chọn 2 trong các chủ đề dưới đây; mỗi chủ đề có 2 câu hỏi.</p><table class="tbl"><thead><tr><th>#</th><th>Chủ đề</th><th>Câu 1</th><th>Câu 2</th></tr></thead><tbody>${LISTENING_BANK.P4.map((t, i) => `<tr><td>${i + 1}</td><td><b>${h(t.topic)}</b><br><span class="small muted">${h(t.vi.replace(/^-\s*/, ""))}</span></td>${t.ans.map(a => `<td>${h(a.en)}<br><span class="small muted">${h(a.vi.replace(/^-\s*/, ""))}</span></td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
 }
 function listeningTest(view, test) {
   if (!test) return go("#/listening");
   const audios = [];
   const Qr = quizRunner(view, "listening", test, Q => test.parts.map((p, pi) => {
-    const P = { title: p.title, instr: p.instr, short: p.title.split("–")[0].trim() };
+    const P = { title: p.title, instr: p.instr, short: test.bank ? (p.title.length > 16 ? String(pi + 1) : p.title) : p.title.split("–")[0].trim() };
     if (p.type === "mcq") P.mount = body => {
       const rvs = p.items.map((it, k) => {
         const box = document.createElement("div"); box.className = "q"; box.innerHTML = `<div class="qt">${k + 1}. ${h(it.q)}</div>`;
@@ -192,6 +216,11 @@ function listeningTest(view, test) {
         const sc = scriptBlock(it.script, it.ev);
         const m = mcqBlock(Q, P, test.id + "m" + k, it.options, it.answer, it.explain, () => { sc.classList.add("show"); au.free(); });
         box.appendChild(m.el); box.appendChild(sc); body.appendChild(box); return m.reveal; });
+      P.reveal = () => rvs.forEach(f => f());
+    };
+    if (p.type === "flash") P.mount = body => {
+      const rvs = p.items.map((it, k) => { const box = document.createElement("div"); box.className = "q"; box.innerHTML = `<div class="qt">${k + 1}. ${h(it.q)}</div>`;
+        const m = mcqBlock(Q, P, test.id + pi + "f" + k, it.options, it.answer, it.explain); box.appendChild(m.el); body.appendChild(box); return m.reveal; });
       P.reveal = () => rvs.forEach(f => f());
     };
     if (p.type === "match") P.mount = body => {

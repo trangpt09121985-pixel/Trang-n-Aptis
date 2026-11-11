@@ -263,3 +263,4 @@ iframe.doc{width:100%;height:78vh;border:1px solid var(--line);border-radius:12p
 @media print{.sidebar,.topbar,.exam-bar{display:none}.view{padding:0}}
 #report{scroll-margin-top:150px}
 @media (max-width:760px){.exam-bar{position:static}}
+.mn-key{white-space:nowrap}

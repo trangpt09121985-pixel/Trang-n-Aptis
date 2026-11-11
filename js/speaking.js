@@ -22,6 +22,7 @@ route("speaking", (view, args) => {
   if (args[0] === "p3") { const s = SPEAKING_P3_EXTRA.find(t => t.id === args[1]); return spRunner(view, s, s.qs.map((q, i) => ({ part: 3, qi: i, q: q.q, a: q.a, sup: q.sup, sec: 45, img: s.img }))); }
   if (args[0] === "lesson") return lessonPage(view, "speaking", args[1]);
   if (args[0] === "free") return spFree(view);
+  if (args[0] === "bank") return args[1] && args[1] !== "tab" ? spBankRun(view, args[1]) : spBankPage(view, args[2]);
   crumbs([["Tổng quan", "#/"], ["Speaking", ""]]);
   const done = SPEAKING_TESTS.filter(t => Store.data.results[t.id]).length;
   view.innerHTML = `
@@ -33,6 +34,7 @@ route("speaking", (view, args) => {
   </div>
   <div class="sec-title"><h2>📘 Bài học</h2></div>
   <div class="lesson-list t-speaking">${LESSONS.filter(l => l.skill === "speaking").map(l => `<a href="#/speaking/lesson/${l.id}"><span class="em">${l.icon}</span><span><b>${h(l.title)}</b></span><span class="done">${Store.data.lessons[l.id] ? '<span class="pill good">✓ Đã học</span>' : ""}</span></a>`).join("")}</div>
+  <a class="card t-speaking" href="#/speaking/bank" style="display:flex;gap:14px;align-items:center;margin-top:16px;border-left:4px solid var(--speaking);text-decoration:none;color:var(--ink)"><span style="font-size:34px">🏛️</span><span><b style="font-size:16px">Ngân hàng đề thật Speaking</b><br><span class="small muted">${SPEAKING_BANK.P1.length} câu Part 1 · ${SPEAKING_BANK.P2.length} tranh Part 2 · ${SPEAKING_BANK.P3.length} cặp tranh Part 3 · ${SPEAKING_BANK.P4.length} đề Part 4 – từ tài liệu “SPEAKING PART 1/2/3/4 – REAL TESTS”, có ảnh và bài mẫu, luyện & chấm AI từng câu.</span></span><span class="spacer"></span><span class="btn sm primary">Mở →</span></a>
   <div class="sec-title"><h2>📝 14 đề Speaking hoàn chỉnh</h2><span class="pill">${done}/14 đã làm</span></div>
   <div class="tiles t-speaking">${SPEAKING_TESTS.map(t => { const r = Store.data.results[t.id]; return `<a class="tile" href="#/speaking/test/${t.id}"><div class="thumb" style="background-image:url('${t.p2.img[0]}')"></div><div class="tb"><b>${h(t.title)}</b><small>P1: ${h(t.p1[0].q.slice(0, 34))}…</small><br>${r ? `<span class="pill good">Tốt nhất ${r.best}/50 · ${cefrOf("speaking", r.best)}</span>` : `<span class="pill">Chưa làm</span>`}</div></a>`; }).join("")}</div>
   <div class="sec-title"><h2>🖼️ Part 3 bổ sung (so sánh 2 tranh)</h2></div>
@@ -66,13 +68,14 @@ function spRunner(view, test, itemsOverride) {
   function show() {
     nav(); $("#report").innerHTML = "";
     const it = items[state.i], ans = state.answers[state.i];
-    const imgs = it.img ? `<div class="sp-imgs ${it.img.length > 1 ? "two" : ""}">${it.img.map(s => `<img src="${s}" alt="Speaking picture">`).join("")}</div>`
+    const imgs = it.img && !it.img.length ? `<div class="sp-noimg tinted">🖼️<small>Tài liệu gốc không kèm ảnh – mô tả tranh: ${h(it.note || it.title || "")}</small></div>` : it.img ? `<div class="sp-imgs ${it.img.length > 1 ? "two" : ""}">${it.img.map(s => `<img src="${s}" alt="Speaking picture">`).join("")}</div>`
       : `<div class="sp-noimg tinted">${it.part === 1 ? "🙋" : it.icon || "🌟"}<small>${it.part === 1 ? "Personal information" : "Part 4 – personal experience & opinion"}</small></div>`;
     const qHtml = it.part === 4 ? `<ol class="qbox" style="font-size:16.5px;padding-left:20px">${it.qs.map(q => `<li>${h(q)}</li>`).join("")}</ol>` : `<div class="qbox">${h(it.q)} ${it.sup ? '<span class="tag-sup" title="Câu hỏi giáo viên bổ sung để đủ cấu trúc đề">GV bổ sung</span>' : ""}</div>`;
     $("#stage").innerHTML = `<div class="card t-speaking"><div class="sp-stage"><div>${imgs}</div><div>
-      <span class="part-tag">Part ${it.part}${it.part < 4 ? ` · Câu ${it.qi + 1}` : ""}</span> <span class="pill">⏱ ${it.prep ? "1′ chuẩn bị + " : ""}${it.sec >= 60 ? it.sec / 60 + " phút" : it.sec + " giây"}</span>
+      <span class="part-tag">Part ${it.part}${it.part < 4 ? ` · Câu ${it.qi + 1}` : ""}</span>${it.sup && it.part === 4 ? ' <span class="tag-sup">Câu hỏi GV bổ sung (tiếng Anh)</span>' : ""} <span class="pill">⏱ ${it.prep ? "1′ chuẩn bị + " : ""}${it.sec >= 60 ? it.sec / 60 + " phút" : it.sec + " giây"}</span>
       <p class="small muted" style="margin:8px 0 2px">${h(SP_INSTR[it.part])}</p>
       ${qHtml}
+      ${it.hint ? `<p class="small" style="margin:0 0 8px">💡 ${it.hint}</p>` : ""}
       <div class="row"><button class="btn sm" id="hearQ">🔊 Nghe câu hỏi</button>${it.part === 4 ? "" : ""}</div>
       <div class="phase" id="phase"><div class="clock" id="clock">${fmtTime(it.prep || it.sec)}</div><div style="flex:1"><div class="small" id="phaseLbl">Sẵn sàng. Bấm “Bắt đầu” khi bạn sẵn sàng.</div><div class="bar"><i id="pbar"></i></div></div></div>
       ${it.prep ? `<textarea id="notes" placeholder="Ghi chú nhanh trong 1 phút chuẩn bị (từ khóa cho 3 câu hỏi)…" style="min-height:70px"></textarea>` : ""}
@@ -138,6 +141,7 @@ function spRunner(view, test, itemsOverride) {
   function showReport(modelOnly) {
     const it = items[state.i], ans = state.answers[state.i];
     const el = $("#report");
+    if (modelOnly && !it.a) { el.innerHTML = `<div class="card"><h3>📌 Bài mẫu</h3><p>Đề gốc chưa có bài mẫu cho câu này. Hãy áp dụng khung: <a href="#/speaking/lesson/sp-describe">tả tranh 8 bước</a> · <a href="#/speaking/lesson/sp-5tips">5 mẹo phát triển ý</a> · <a href="#/speaking/lesson/sp-compare">khung “Both…”</a> · <a href="#/speaking/lesson/sp-part4">4 câu chuyện đa năng</a>, rồi bấm Chấm điểm AI để nhận góp ý.</p></div>`; return; }
     if (modelOnly && !ans.res) { el.innerHTML = `<div class="card"><h3>📌 Bài mẫu – ${h(it.part === 4 ? "Part 4" : it.q)}</h3><p class="ex" style="font-size:15.5px">${h(it.a)}</p><button class="btn sm blue" data-karaoke>▶ Xem minh họa đọc mẫu (karaoke)</button><div class="kara-box transcript" style="margin-top:8px;display:none"></div></div>`; Scorer.bindReport(el, it.a); el.scrollIntoView({ behavior: "smooth" }); return; }
     el.innerHTML = Scorer.reportHTML(ans.res, { color: "var(--speaking)", text: ans.text, model: it.a, title: `Kết quả Part ${it.part}${it.part < 4 ? " · Câu " + (it.qi + 1) : ""}` });
     Scorer.bindReport(el, it.a); el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -156,7 +160,7 @@ function spRunner(view, test, itemsOverride) {
       <table class="tbl" style="margin-top:14px"><thead><tr><th>Phần</th><th>Số câu đã chấm</th><th>Điểm trung bình</th></tr></thead><tbody>${rows.map(r => `<tr><td>Part ${r.p}</td><td>${r.done}/${r.n}</td><td><b>${r.avg}</b> / ${r.max}</td></tr>`).join("")}</tbody></table>
       <div class="row"><button class="btn" id="again">↺ Làm lại từ đầu</button><a class="btn" href="#/speaking">← Danh sách đề</a></div></div>`;
     $("#again").onclick = () => { state.answers.forEach(a => { a.text = ""; a.res = null; a.audio = null; }); state.i = 0; show(); };
-    if (answered) Store.result(test.id, { skill: "speaking", title: test.title, scale, cefr: lv });
+    if (answered && !test.bank) Store.result(test.id, { skill: "speaking", title: test.title, scale, cefr: lv });
     nav();
   }
   show();
@@ -182,4 +186,36 @@ function spFree(view) {
   const run = () => { const [p, qi] = $("#fp").value.split("|").map(Number); return { part: p, qi, question: $("#fq").value, text: $("#ans").value, seconds: Rec.seconds }; };
   $("#sc").onclick = () => { const a = run(); const r = Scorer.speaking(a); $("#report").innerHTML = Scorer.reportHTML(r, { text: a.text }); Scorer.bindReport($("#report")); };
   if ($("#cl")) $("#cl").onclick = async () => { const a = run(); $("#cl").disabled = true; try { const r = await Scorer.claude("speaking", { part: a.part, question: a.question, candidate_transcript: a.text, max_score: a.part === 4 ? 6 : 5 }); r.source = "Chấm bởi Claude"; r.words = wc(a.text); $("#report").innerHTML = Scorer.reportHTML(r, { text: a.text }); Scorer.bindReport($("#report")); } catch (e) { toast(e.message, 5000); } $("#cl").disabled = false; };
+}
+
+/* ===== Ngân hàng đề thật Speaking ===== */
+const STORY_NAME = { 1: "Câu chuyện 1 – Ngày tôi đi thi Aptis", 2: "Câu chuyện 2 – Thăm bà", 3: "Câu chuyện 3 – Một ngày đặc biệt", 4: "Câu chuyện 4 – Chuyến đi Đà Nẵng" };
+function spBankPage(view, tab) {
+  crumbs([["Tổng quan", "#/"], ["Speaking", "#/speaking"], ["Ngân hàng đề thật", ""]]);
+  const B = SPEAKING_BANK; tab = tab || "P2";
+  view.innerHTML = `<div class="page-head t-speaking"><div class="ico tinted">🏛️</div><div><h1>Ngân hàng đề thật Speaking</h1><p>Tổng hợp từ “SPEAKING PART 1 – REAL TESTS”, “SPEAKING PART 2,3,4 – REAL TESTS”, “Sp P12 practice” và “speaking P2 thực hành”. Bấm <b>🎙️ Luyện</b> để vào phòng thi mô phỏng và được chấm AI. Câu hỏi gốc bằng tiếng Việt đã được dịch sang tiếng Anh như trong phòng thi.</p></div></div>
+  <div class="tabs">${[["P1", "Part 1 – " + B.P1.length + " câu"], ["P2", "Part 2 – " + B.P2.length + " tranh"], ["P3", "Part 3 – " + B.P3.length + " cặp tranh"], ["P4", "Part 4 – " + B.P4.length + " đề"]].map(([k, l]) => `<button class="${k === tab ? "on" : ""}" onclick="go('#/speaking/bank/tab/${k}')">${l}</button>`).join("")}</div><div id="bankBody"></div>`;
+  const body = $("#bankBody");
+  if (tab === "P1") {
+    body.innerHTML = `<div class="row" style="margin-bottom:10px"><a class="btn primary" href="#/speaking/bank/P1R">🎲 Luyện ngẫu nhiên 3 câu Part 1</a><span class="small muted">Mỗi câu 30 giây, đúng như đề thật.</span></div>` +
+      B.P1.map(x => `<div class="q"><div class="row"><b style="flex:1">${h(x.q)}</b><a class="btn sm" href="#/speaking/bank/${x.id}">🎙️ Luyện</a></div>${x.note ? `<p class="small muted">${h(x.note)}</p>` : ""}${x.a ? `<details><summary class="small">📌 Bài mẫu</summary><p class="ex">${h(x.a)}</p></details>` : `<p class="small muted">Chưa có bài mẫu – áp dụng 5 mẹo phát triển ý.</p>`}</div>`).join("");
+  } else if (tab === "P4") {
+    body.innerHTML = `<div class="tiles t-speaking">${B.P4.map(t => `<a class="tile" href="#/speaking/bank/${t.id}"><div class="thumb" style="height:70px;font-size:30px">${P4_ICON[(t.n - 1) % P4_ICON.length]}</div><div class="tb"><b>Đề ${t.n}: ${h(t.title)}</b><small>${h(t.qs[0]?.q || "")}</small>${t.story ? `<br><span class="pill good">Dùng ${h(STORY_NAME[t.story].split(" – ")[0])}</span>` : ""}${t.qs.some(q => q.a) ? ` <span class="pill">Có bài mẫu</span>` : ""}</div></a>`).join("")}</div>`;
+  } else {
+    const list = B[tab];
+    body.innerHTML = `<div class="tiles t-speaking">${list.map(t => `<a class="tile" href="#/speaking/bank/${t.id}"><div class="thumb" style="${t.img.length ? `background-image:url('${t.img[0]}')` : ""}">${t.img.length ? "" : "🖼️"}</div><div class="tb"><b>${h(t.id.startsWith("MH") ? t.title : (tab === "P2" ? "Tranh " : "Cặp tranh ") + t.n + ": " + t.title)}</b><small>${t.qs.length} câu hỏi${t.qs.some(q => q.a) ? " · có bài mẫu" : ""}</small></div></a>`).join("")}</div>`;
+  }
+}
+function spBankRun(view, id) {
+  const B = SPEAKING_BANK;
+  if (id === "P1R") { const pick = [...B.P1].sort(() => Math.random() - 0.5).slice(0, 3); return spRunner(view, { id: "P1R", title: "Part 1 – 3 câu ngẫu nhiên (đề thật)", bank: true }, pick.map((x, i) => ({ part: 1, qi: i, q: x.q, a: x.a, sec: 30 }))); }
+  let t = B.P1.find(x => x.id === id);
+  if (t) return spRunner(view, { id, title: "Part 1 – " + t.q, bank: true }, [{ part: 1, qi: 0, q: t.q, a: t.a, sec: 30 }]);
+  t = B.P2.find(x => x.id === id);
+  if (t) return spRunner(view, { id, title: t.id.startsWith("MH") ? t.title : "Part 2 – Tranh " + t.n + ": " + t.title, bank: true }, t.qs.map((q, i) => ({ part: 2, qi: i, q: q.q, a: q.a, sup: q.sup, sec: 45, img: t.img, note: t.note, title: t.title })));
+  t = B.P3.find(x => x.id === id);
+  if (t) return spRunner(view, { id, title: "Part 3 – Cặp tranh " + t.n + ": " + t.title, bank: true }, t.qs.map((q, i) => ({ part: 3, qi: i, q: q.q, a: q.a, sup: q.sup, sec: 45, img: t.img, note: t.note, title: t.title })));
+  t = B.P4.find(x => x.id === id);
+  if (t) return spRunner(view, { id, title: "Part 4 – Đề " + t.n + ": " + t.title, bank: true }, [{ part: 4, qi: 0, q: t.qs.map(x => x.q).join(" "), qs: t.qs.map(x => x.q), a: t.qs.map(x => x.a).filter(Boolean).join(" "), sec: 120, prep: 60, sup: t.qs.some(x => x.sup), icon: P4_ICON[(t.n - 1) % P4_ICON.length], hint: t.story ? `Gợi ý: có thể dùng <a href="#/speaking/lesson/sp-part4">${h(STORY_NAME[t.story])}</a> (học 1 chuyện – dùng nhiều đề).` : "Đề này chưa có câu chuyện mẫu – kể theo dàn ý: khi nào, ở đâu, với ai → cảm xúc (At first… then…) → ý kiến chung." }]);
+  go("#/speaking/bank");
 }

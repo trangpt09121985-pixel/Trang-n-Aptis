@@ -2195,3 +2195,358 @@ window.WRITING_TESTS=[
 ]
 }
 ];
+window.WRITING_TESTS = window.WRITING_TESTS.concat([
+{
+"id": "W33",
+"title": "Beautiful Homes Club",
+"src": "T10 + BEAUTIFUL-HOMES-CLUB",
+"p1": [
+{
+"q": "How many people are there in your family?",
+"a": "5/ There are 5 people."
+},
+{
+"q": "What was your first school?",
+"a": "HBT Primary School."
+},
+{
+"q": "When was the last time you travelled by car?",
+"a": "Yesterday."
+},
+{
+"q": "What is your favourite film?",
+"a": "Tom and Jerry."
+},
+{
+"q": "What is the room you are in like?",
+"a": "It is big."
+}
+],
+"p2": {
+"q": "Why do you want to join the Beautiful Homes Club?",
+"a": "I want to join the Beautiful Homes Club because I love beautiful houses and I want to meet people who have the same hobby."
+},
+"p3": [
+{
+"who": "A",
+"q": "I have a bad relationship with my neighbours because they often make noise. Tell me about your relationship with your neighbours.",
+"a": "Hi. It's nice to talk to you. I have a good relationship with my neighbours. My neighbour is a beautiful girl. She is friendly and kind. She often helps me when I need."
+},
+{
+"who": "B",
+"q": "Do you prefer living in old buildings or modern buildings? Why?",
+"a": "Thank you for your interesting question. Of course, I prefer living in modern buildings because they are beautiful and comfortable. I feel relaxed when I live there."
+},
+{
+"who": "C",
+"q": "Houses should be designed in a way that is good for the environment. Do you agree?",
+"a": "I strongly agree with the idea that houses should be designed in a way that is good for the environment because the environment is very important to our health."
+}
+],
+"p4": [
+{
+"intro": "Part 4: You are a member of the Beautiful Homes Club. You received this email from the club.",
+"email": [
+"Dear member,",
+"The cost of maintaining old buildings is very high and these buildings take up a lot of space. The government has a proposal that we knock down old buildings and build more modern blocks."
+],
+"tasks": [
+{
+"task": "Write an email to your friend, who is also a member of the club. (50 words)",
+"sample": "Hi Jane,\nIt's me, Mary. How's it going? The government has a proposal that we knock down old buildings and build more modern blocks. I was so excited to hear that. I strongly agree with the proposal. What do you think? Let's talk about it later.\nLove"
+},
+{
+"task": "Write an email to the manager of the club. (120-150 words)",
+"sample": "Dear Manager,\nMy name is Mary. I have been an active member of the club for 6 months. I am writing this email to express my ideas about the upcoming plan mentioned in the recent email from our club.\nI have been informed that the government has a proposal that we knock down old buildings and build more modern blocks. I was so excited to hear that, and I believe that most of the members share my feelings.\nBeing a member of the club, I would like to offer some ideas. I strongly agree with the proposal because old buildings are ugly and not safe. It is time to knock them down and build more modern blocks which are beautiful and comfortable. Many people want to live in modern buildings. We should hire a famous architect who can design the buildings well.\nHopefully, my ideas will be useful for our club.\nThank you."
+}
+]
+}
+]
+},
+{
+"id": "W34",
+"title": "Gardening Club",
+"src": "Writing T10",
+"p1": [
+{
+"q": "Where are you from?",
+"a": "England/ I'm from England."
+},
+{
+"q": "What's the weather like today?",
+"a": "Sunny/ It's sunny and warm."
+},
+{
+"q": "What did you do last night?",
+"a": "I watched TV."
+},
+{
+"q": "What is your first language?",
+"a": "It's English."
+},
+{
+"q": "What is your favourite colour?",
+"a": "I love blue."
+}
+],
+"p2": {
+"q": "Why did you join the club?",
+"a": "I joined the club because I am keen on gardening and I want to meet members who have the same hobby."
+},
+"p3": [
+{
+"who": "A",
+"q": "Describe your garden.",
+"a": "Hi. It's nice to talk to you. My garden is very big. It is behind my house. I grow many kinds of flowers there. I usually read books or enjoy fresh air in the garden."
+},
+{
+"who": "B",
+"q": "Do people in your country like gardening?",
+"a": "Oh, I like your question. People in my country like gardening because it is interesting and useful. They can relax and reduce stress. Also, it is good for their health."
+},
+{
+"who": "C",
+"q": "What is your favourite season? Why?",
+"a": "I really love spring because it is beautiful with many flowers and trees. The weather is very nice. It is sunny and warm. It is good for outdoor activities."
+}
+],
+"p4": [
+{
+"intro": "Part 4: You are a member of the gardening club. You received this email from the club.",
+"email": [
+"Dear member,",
+"The City Council wants to encourage people to take up gardening. The City Council has two proposals. The first is to plant 500 new trees and some species of flowers at the local park. The second is to organise gardening workshops at a local college.",
+"As a member of the gardening club, please email which proposal you would like to support."
+],
+"tasks": [
+{
+"task": "Write an email to your friend, who is also a member of the club. (50 words)",
+"sample": "Hi Jane,\nIt's me, Mary. How's it going? The City Council wants to encourage people to take up gardening. I was so excited to hear that. I think we should plant 500 new trees and some species of flowers at the local park. What do you think? Let's talk about it later.\nLove"
+},
+{
+"task": "Write an email to the manager of the club. (120-150 words)",
+"sample": "Dear Manager,\nMy name is Mary. I have been an active member of the club for 6 months. I am writing this email to express my ideas about the upcoming plan mentioned in the recent announcement from our club.\nAccording to the email, the City Council wants to encourage people to take up gardening. I was so excited to hear that news, and I believe that most of the members will share my feelings.\nBeing a member of the club, I would like to offer some ideas. I think we should plant 500 new trees and some species of flowers at the local park. There are some reasons for this. First, it can make the park more beautiful, so it can attract more people to come here. Second, it is good for the environment. We can come here to enjoy fresh air.\nHopefully, my ideas will be helpful to our club. I am looking forward to hearing from you.\nThank you"
+}
+]
+}
+]
+},
+{
+"id": "W35",
+"title": "Cinema Club",
+"src": "CINEMA CLUB (bài mẫu GV soạn)",
+"gv": true,
+"p1": [
+{
+"q": "Where are you from?",
+"a": "Vietnam/ I am from Hanoi, Vietnam."
+},
+{
+"q": "What's the weather like today?",
+"a": "It's sunny and warm."
+},
+{
+"q": "What do you do in your free time?",
+"a": "I watch films."
+},
+{
+"q": "First language?",
+"a": "Vietnamese."
+},
+{
+"q": "Who do you usually go to the movies with?",
+"a": "With my family."
+}
+],
+"p2": {
+"q": "When and how often do you watch films?",
+"a": "I usually watch films at the weekend, about twice a month. I often go to the cinema near my house with my family because it is fun and relaxing."
+},
+"p3": [
+{
+"who": "A",
+"q": "I like to sit near the screen when I go to the cinema. I never drink or eat anything during the film. What about you?",
+"a": "Hi. It's nice to talk to you. I prefer sitting in the middle because I can see the whole screen clearly. I usually eat popcorn and drink some water during the film. It makes the film more enjoyable."
+},
+{
+"who": "B",
+"q": "I don't like watching old black-and-white films. They are boring. I prefer modern films. Which do you prefer, and why?",
+"a": "Thank you for your interesting question. I also prefer modern films because they have beautiful pictures, great sound and exciting stories. However, some old films are very meaningful, so I sometimes watch them with my parents."
+},
+{
+"who": "C",
+"q": "Some people say we don't need cinemas any more. We can watch everything on TV or online at home. What do you think about this?",
+"a": "I don't agree with this idea. Watching films online is convenient and cheap, but the cinema has a big screen and great sound. Besides, going to the cinema is a good way to share happy moments with friends."
+}
+],
+"p4": [
+{
+"intro": "Part 4: You are a member of the cinema club. You received this email from the club.",
+"email": [
+"Dear member,",
+"As you know, our weekly film shows are very popular. However, we have had a number of complaints about people using their mobile phones during the film. We have started asking people to turn off their phones before the film starts, but this hasn't solved the problem. We are thinking of banning mobile phones from our cinema in the future and would be interested to hear your view on this. Do you have any other suggestions?"
+],
+"tasks": [
+{
+"task": "Write an email to your friend who is also a member of the club. Tell your friend what suggestions you will make and why. (50 words)",
+"sample": "Hi Jane,\nIt's me, Mary. How's it going? Did you read the email about people using phones during the films? I was really annoyed to hear that. I don't think we should ban phones. Instead, we should show a short video before each film to remind everyone. What do you think? Let's talk about it over coffee.\nSee you soon,\nMary"
+},
+{
+"task": "Write an email to the manager of the club. Write about your ideas and what you think about the situation. (120-150 words)",
+"sample": "Dear Manager,\nMy name is Mary. I have been an active member of the club for 6 months. I am writing this email to share my opinions about the problem mentioned in the recent email from our club.\nAs stated in the email, some people are using their mobile phones during our film shows. I was really disappointed to hear the news because this problem can badly affect other members' enjoyment.\nTo address the problem, I would like to share a few ideas. I do not think we should ban mobile phones completely because some members need them in case of emergency. Instead, I suggest showing a short and funny video before each film to remind everyone to switch off their phones. Second, it is advisable for us to ask staff to remind people who use their phones.\nI hope that we can fix the problem soon. Thank you for your consideration. I look forward to hearing your thoughts.\nBest regards,\nMary"
+}
+]
+}
+]
+},
+{
+"id": "W36",
+"title": "English Club (Version 3 – Talk show cancelled)",
+"src": "ENGLISH CLUB phiên bản 2 (bài mẫu GV soạn)",
+"gv": true,
+"p1": [],
+"p2": null,
+"p3": [
+{
+"who": "A",
+"q": "Hi! I heard that you attended a club meeting this afternoon. How do you feel about the meeting?",
+"a": "Hi. It's nice to talk to you. I really enjoyed the meeting this afternoon. The topic was interesting and useful. I could practise speaking English and make new friends. I felt more confident after the meeting."
+},
+{
+"who": "B",
+"q": "We have weekly meetings on Saturday afternoons. What topic are you expecting us to talk about?",
+"a": "Thank you for your question. I hope we can talk about travelling because it is interesting and useful. Members can share their experiences and learn new words about places, food and culture."
+},
+{
+"who": "C",
+"q": "We are thinking of holding some English games next week. Can you suggest some?",
+"a": "I think we should play word games and quizzes because they are fun and easy to organise. Besides, we can play a guessing game with pictures. It helps members learn new vocabulary and work in teams."
+}
+],
+"p4": [
+{
+"intro": "Part 4: You are a member of the English club. You have just received the following email from the club.",
+"email": [
+"Dear Members,",
+"We are sorry to inform you that the Talk Show has been cancelled as the guests are unexpectedly busy. We do not have any back-up plan, so there will be no meeting this week. We will inform you of the reopening of the Talk Show as soon as we can. We are sorry for the inconvenience."
+],
+"tasks": [
+{
+"task": "Write an email to your friend. Write about your feelings and what you would like to do. (50 words)",
+"sample": "Hi Jane,\nIt's me, Mary. How's it going? Did you hear that the Talk Show has been cancelled? I was a little sad to hear that because I was waiting for it. I think we can meet at a café on Saturday and practise English together. What do you think?\nSee you soon,\nMary"
+},
+{
+"task": "Write an email to the president of the club. Write about your feelings and suggest possible solutions. (120-150 words)",
+"sample": "Dear President,\nMy name is Mary. I have been an active member of the English club for 6 months. I am writing this email to share my opinions about the cancellation of the Talk Show mentioned in the recent email from our club.\nAs stated in the email, the Talk Show has been cancelled because the guests are busy, and there will be no meeting this week. I was a little disappointed to hear the news because many members were waiting for it.\nTo help the club, I would like to share a few ideas. First, we should have an online meeting for members to practise speaking English. It is fast and easy to carry out. Second, it is advisable for us to invite an experienced member to give a short talk, so the meeting can still be useful.\nI hope my ideas will be useful for our club. Thank you for your consideration. I look forward to hearing your thoughts.\nBest regards,\nMary"
+}
+]
+}
+]
+},
+{
+"id": "W37",
+"title": "English Club (Version 4 – Talk for old & young)",
+"src": "ENGLISH CLUB phiên bản 3 (bài mẫu GV soạn)",
+"gv": true,
+"p1": [],
+"p2": {
+"q": "When do you usually have to come into contact with English?",
+"a": "I usually use English at work when I read documents and write emails to foreign partners. In the evening, I also watch English videos to improve my listening."
+},
+"p3": [
+{
+"who": "A",
+"q": "Tell me about your English learning experience.",
+"a": "Hi. It's nice to talk to you. I started learning English at secondary school. At first, it was difficult, especially grammar. Now I practise every day with videos and apps, so I feel more confident."
+},
+{
+"who": "B",
+"q": "I can read and write, but I can't speak English. Do you have any advice for me?",
+"a": "I think you should practise speaking every day. You can record your voice and listen to it. Besides, you should join an English club or talk with foreigners. It helps you become more confident."
+},
+{
+"who": "C",
+"q": "English is a popular language in the world. What are your thoughts on this opinion?",
+"a": "I strongly agree with this idea. English is spoken all over the world. It helps people get good jobs and communicate with people from different countries. Therefore, it is really important in our lives."
+}
+],
+"p4": [
+{
+"intro": "Part 4: You are a member of the English club. You received this email from the club.",
+"email": [
+"Dear members,",
+"The club will organise a talk to attract both old and young people. Please give your opinions."
+],
+"tasks": [
+{
+"task": "Write an email to your friend, who is also a member of the club. (50 words)",
+"sample": "Hi Jane,\nIt's me, Mary. How's it going? Our club is going to organise a talk for both old and young people. I was so excited to hear that. I think we should invite a famous English teacher to talk about easy ways to learn English. What do you think? Let's talk about it later.\nLove"
+},
+{
+"task": "Write an email to the manager of the club. (120-150 words)",
+"sample": "Dear Manager,\nMy name is Mary. I have been an active member of the club for 6 months. I am writing this email to share my opinions about the upcoming talk mentioned in the recent email from our club.\nAs stated in the email, the club is going to organise a talk to attract both old and young people. I was truly delighted to hear the news because I believe this plan will be very useful for our club and the community.\nTo make this plan more successful, I would like to share a few ideas. First, we should invite a famous English teacher to talk about easy ways to learn English. Second, it is a good idea to offer free tickets for people who come with their families, so we can attract both young and elderly people.\nI hope my ideas will be useful for our club. I look forward to hearing your thoughts.\nBest regards,\nMary"
+}
+]
+}
+]
+},
+{
+"id": "W38",
+"title": "Design Club (Part 4)",
+"src": "DESIGN CLUB (bài mẫu GV soạn)",
+"gv": true,
+"p1": [],
+"p2": null,
+"p3": [],
+"p4": [
+{
+"intro": "Part 4: You are a member of the design club. You received this email from the club.",
+"email": [
+"Dear members,",
+"We would like to design a poster to attract more people to join. We would like members to contribute ideas about colours, images and design styles for the poster. Please send us your suggestions and your reasons."
+],
+"tasks": [
+{
+"task": "Write an email to your friend. Write about your feelings and what you would like to do. (about 50 words)",
+"sample": "Hi Jane,\nIt's me, Mary. How's it going? Our club is going to design a poster to attract new members. I was so excited to hear that. I think we should use bright colours and photos of our activities. What do you think? Let's talk about it over coffee.\nSee you soon,\nMary"
+},
+{
+"task": "Write an email to the manager of the club. Write about your feelings and what you think the club should do. (120-150 words)",
+"sample": "Dear Manager,\nMy name is Mary. I am writing this email to share my ideas about the new poster mentioned in the recent email from our club.\nAs stated in the email, the club is going to design a poster to attract more people to join. I was truly delighted to hear the news because a good poster can help our club grow.\nTo make the poster more successful, I would like to share a few ideas. First, we should use bright colours such as orange and blue because they are eye-catching and friendly. Second, it is advisable for us to use real photos of our members' work. Finally, I suggest a simple style with a short slogan.\nI hope my ideas will be useful for our club. I look forward to hearing your thoughts.\nBest regards,\nMary"
+}
+]
+}
+]
+},
+{
+"id": "W39",
+"title": "Exercise Club (Part 4)",
+"src": "EXERCISE CLUB (bài mẫu GV soạn)",
+"gv": true,
+"p1": [],
+"p2": null,
+"p3": [],
+"p4": [
+{
+"intro": "Part 4: You are a member of the exercise club. You received this email from the club.",
+"email": [
+"Dear members,",
+"The building where the club holds weekly meetings is old and in need of repair. There are some suggestions as follows:",
+"- Organise a running competition to raise funds for the club.",
+"- Increase membership fees.",
+"Please give us your opinions."
+],
+"tasks": [
+{
+"task": "Write a letter to a friend (also a member of the club), giving your thoughts on this issue. (about 50 words)",
+"sample": "Hi Jane,\nIt's me, Mary. How's it going? Did you read the email about repairing our club building? I was a little worried to hear that. I think we should organise a running competition to raise money. It is fun and healthy. What do you think? Let's talk about it later.\nLove"
+},
+{
+"task": "Write a letter to the club manager, giving your opinion on the above suggestions and providing additional solutions for the club. (120-150 words)",
+"sample": "Dear Manager,\nMy name is Mary. I have been an active member of the club for 6 months. I am writing this email to share my opinions about the plan mentioned in the recent email from our club.\nAs stated in the email, our building is old and needs to be repaired. I was a little sad to hear the news, and I think most members share my feelings.\nAmong the two options, I believe that the first option is the better choice because a running competition is fun, healthy and can attract many people. I do not agree with increasing membership fees because many members are students with limited budgets. In addition, we should ask for financial support from local businesses, and we can sell T-shirts with the club logo at the event.\nI hope my ideas will be useful for our club. Thank you for your consideration.\nBest regards,\nMary"
+}
+]
+}
+]
+}
+]);

@@ -2,7 +2,7 @@
 const COUNTS = () => ({ speaking: SPEAKING_TESTS.length, writing: WRITING_TESTS.length, reading: READING_TESTS.length, listening: LISTENING_TESTS.length, core: CORE_TESTS.length });
 function bestBySkill() {
   const out = {}; Object.keys(SKILLS).forEach(s => out[s] = { best: null, done: 0 });
-  Object.entries(Store.data.results).forEach(([id, r]) => { const s = r.skill; if (!out[s]) return; out[s].done++; out[s].best = Math.max(out[s].best ?? 0, r.best ?? r.scale ?? 0); });
+  Object.entries(Store.data.results).forEach(([id, r]) => { const s = r.skill; if (!out[s] || /^(RB|LB)/.test(id)) return; out[s].done++; out[s].best = Math.max(out[s].best ?? 0, r.best ?? r.scale ?? 0); });
   return out;
 }
 
@@ -16,7 +16,7 @@ route("home", (view) => {
   const exam = Store.settings.examDate; const days = exam ? Math.ceil((new Date(exam) - new Date(new Date().toDateString())) / 864e5) : null;
   view.innerHTML = `
   <div class="hero"><div class="card hero-main"><div class="deco">🎓</div><h1>Chào chị ${h(name.split(" ").slice(-2).join(" "))}! 👋</h1>
-    <p>Dashboard ôn thi <b>Aptis General</b>: 5 thành phần thi, ${totalTests} đề hoàn chỉnh, chấm Speaking & Writing tự động, mẹo thi tổng hợp.</p>
+    <p>Dashboard ôn thi <b>Aptis General</b>: 5 thành phần thi, ${totalTests} đề hoàn chỉnh, ngân hàng đề thật Speaking · Reading · Listening, chấm Speaking & Writing tự động, mẹo thi tổng hợp.</p>
     <div class="hero-stats"><div><b>${doneTests}/${totalTests}</b><span>đề đã luyện</span></div><div><b>${lessonsDone}/${LESSONS.length}</b><span>bài học đã xong</span></div><div><b>${overall}</b><span>CEFR ước lượng (4 kỹ năng)</span></div></div></div>
     <div class="card countdown">${days != null ? `<span class="muted small">⏳ Còn đến ngày thi (${new Date(exam).toLocaleDateString("vi-VN")})</span><div class="big">${days >= 0 ? days : 0} <span style="font-size:18px">ngày</span></div><span class="small muted">${days > 28 ? "Gợi ý: mỗi tuần 1 đề Speaking + 2 đề Writing + 1 đề Reading/Listening." : days >= 0 ? "Giai đoạn nước rút: làm đề thi thử có bấm giờ mỗi ngày." : "Ngày thi đã qua – cập nhật ngày thi mới trong Cài đặt."}</span>`
       : `<span class="muted small">⏳ Đặt ngày thi để xem đếm ngược</span><input type="date" id="exd"><button class="btn sm" id="exs" style="margin-top:6px">Lưu ngày thi</button>`}</div></div>
@@ -30,7 +30,7 @@ route("home", (view) => {
   <div class="grid g4" id="plan"></div>
   <div class="sec-title"><h2>🚀 Truy cập nhanh</h2></div>
   <div class="grid g4">
-    <a class="card skill-card t-speaking" href="#/speaking/free"><div class="head"><span class="em">🎯</span><b>Luyện nói tự do + AI chấm</b></div><span class="small muted">Nói 1 câu bất kỳ, nhận điểm & sửa lỗi ngay.</span></a>
+    <a class="card skill-card t-speaking" href="#/speaking/bank"><div class="head"><span class="em">🏛️</span><b>Đề thật Speaking</b></div><span class="small muted">${SPEAKING_BANK.P2.length + SPEAKING_BANK.P3.length} tranh + ${SPEAKING_BANK.P4.length} đề Part 4, luyện & chấm AI.</span></a>
     <a class="card skill-card t-writing" href="#/writing/lesson/wr-p4"><div class="head"><span class="em">📧</span><b>Khung email Part 4</b></div><span class="small muted">3 dạng đề, 10 gợi ý dùng cho mọi đề.</span></a>
     <a class="card skill-card t-listening" href="#/listening"><div class="head"><span class="em">🧠</span><b>Bảng nhớ Listening P3</b></div><span class="small muted">15 chủ đề Man / Woman / Both.</span></a>
     <a class="card skill-card t-tips" href="#/tips"><div class="head"><span class="em">💡</span><b>Tổng hợp mẹo thi</b></div><span class="small muted">Mẹo theo từng kỹ năng + nguồn chính thức.</span></a></div>`;
@@ -100,7 +100,7 @@ route("library", (view, args) => {
   crumbs([["Tổng quan", "#/"], ["Tài liệu gốc", ""]]);
   const cur = LIBRARY.find(d => d.id === args[0]) || LIBRARY[0];
   view.innerHTML = `<div class="page-head t-slate"><div class="ico tinted">📚</div><div><h1>Tài liệu gốc</h1><p>${LIBRARY.length} tài liệu ôn tập chị đã cung cấp, chuyển sang định dạng web để đọc trực tiếp và tra cứu.</p></div></div>
-  <div class="grid" style="grid-template-columns:280px 1fr"><div class="card lib-list" style="padding:10px">${LIBRARY.map(d => `<a href="#/library/${d.id}" class="${d.id === cur.id ? "on" : ""}">${d.icon} ${h(d.title)}</a>`).join("")}</div>
+  <div class="grid" style="grid-template-columns:280px 1fr"><div class="card lib-list" style="padding:10px;max-height:80vh;overflow:auto">${[[1, "📁 Đợt 1"], [2, "🆕 Đợt 2 – mới bổ sung"]].map(([b, l]) => `<div class="nav-sep" style="margin:8px 6px">${l}</div>` + LIBRARY.filter(d => (d.batch || 1) === b).map(d => `<a href="#/library/${d.id}" class="${d.id === cur.id ? "on" : ""}">${d.icon} ${h(d.title)}</a>`).join("")).join("")}</div>
   <div><div class="row" style="margin-bottom:8px"><b>${cur.icon} ${h(cur.title)}</b><span class="spacer"></span><a class="btn sm" href="${cur.file}" target="_blank">↗ Mở tab mới</a></div><iframe class="doc" src="${cur.file}" title="${h(cur.title)}"></iframe></div></div>`;
   if (innerWidth < 760) view.querySelector(".grid").style.gridTemplateColumns = "1fr";
 });
@@ -143,5 +143,7 @@ function lessonPage(view, skill, id) {
   $$("#adj-exercise button[data-k]").forEach(b => b.onclick = () => { const ex = b.closest(".q").querySelector(".explain"); ex.className = "explain show ok"; ex.innerHTML = "<b>Gợi ý:</b> " + h(ADJ_EXERCISE[+b.dataset.k].a); });
   if ($("#eding-quiz")) { const Q = { instant: true, items: [], onChange() {} }; const box = $("#eding-quiz"); box.innerHTML = `<h4>✏️ Luyện nhanh -ed / -ing</h4>`;
     EDING_QUIZ.forEach((q, k) => { const d = document.createElement("div"); d.className = "q"; d.innerHTML = `<div class="qt">${k + 1}. ${h(q.q)}</div>`; d.appendChild(mcqBlock(Q, null, "ed" + k, q.options, q.answer, q.ex).el); box.appendChild(d); }); }
+  if ($("#rel-quiz")) { const Q = { instant: true, items: [], onChange() {} }; const box = $("#rel-quiz"); box.innerHTML = `<h4>✏️ Luyện nhanh mệnh đề quan hệ</h4>`;
+    REL_QUIZ.forEach((q, k) => { const d = document.createElement("div"); d.className = "q"; d.innerHTML = `<div class="qt">${k + 1}. ${h(q.q)}</div>`; d.appendChild(mcqBlock(Q, null, "rel" + k, q.options, q.answer, q.ex).el); box.appendChild(d); }); }
   attachSay(view);
 }
