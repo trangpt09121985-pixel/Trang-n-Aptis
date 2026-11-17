@@ -13,7 +13,7 @@ function spItems(test) {
   test.p2.qs.forEach((q, i) => items.push({ part: 2, qi: i, q: q.q, a: q.a, sup: q.sup, sec: 45, img: test.p2.img }));
   test.p3.qs.forEach((q, i) => items.push({ part: 3, qi: i, q: q.q, a: q.a, sup: q.sup, sec: 45, img: test.p3.img }));
   const p4 = test.p4.qs;
-  items.push({ part: 4, qi: 0, q: p4.map(x => x.q).join(" "), qs: p4.map(x => x.q), a: p4.map(x => x.a).join(" "), sec: 120, prep: 60, icon: P4_ICON[(parseInt(test.id.slice(1)) - 1) % P4_ICON.length] });
+  items.push({ part: 4, qi: 0, q: p4.map(x => x.q).join(" "), qs: p4.map(x => x.q), a: p4.map(x => x.a).join(" "), sec: 120, prep: 60, img: test.p4.img, icon: P4_ICON[(parseInt(test.id.slice(1)) - 1) % P4_ICON.length] });
   return items;
 }
 
@@ -27,15 +27,16 @@ route("speaking", (view, args) => {
   const done = SPEAKING_TESTS.filter(t => Store.data.results[t.id]).length;
   view.innerHTML = `
   <div class="page-head t-speaking"><div class="ico tinted">🎤</div><div><h1>Speaking – Luyện nói & chấm điểm AI</h1>
-  <p>14 đề hoàn chỉnh (4 phần, 42 hình ảnh), 4 bộ Part 3 bổ sung, 7 bài học từ tài liệu ôn tập. Ghi âm trực tiếp, chuyển giọng nói thành văn bản và chấm theo tiêu chí Aptis.</p></div></div>
+  <p>${SPEAKING_TESTS.length} đề hoàn chỉnh (4 phần, có hình ảnh), 4 bộ Part 3 bổ sung, 7 bài học từ tài liệu ôn tập. Ghi âm trực tiếp, chuyển giọng nói thành văn bản và chấm theo tiêu chí Aptis.</p></div></div>
   <div class="card t-speaking" style="border-left:4px solid var(--speaking)">
     <div class="row"><b>🤖 Cách hệ thống chấm Speaking hoạt động</b><span class="spacer"></span><a class="btn sm" href="#/speaking/free">🎯 Luyện tự do 1 câu hỏi bất kỳ</a></div>
     <p class="small" style="margin:.4em 0 0">① Máy đọc câu hỏi như phòng thi thật → ② bạn bấm <b>Bắt đầu nói</b>, đồng hồ đếm ngược 30″/45″/2′ (Part 4 có 1′ chuẩn bị) → ③ trình duyệt ghi âm và chuyển lời nói thành chữ (Chrome/Edge) – bạn có thể sửa hoặc gõ trực tiếp → ④ bấm <b>Chấm điểm AI</b>: hệ thống phân tích 5 tiêu chí (nhiệm vụ, độ dài/trôi chảy, ngữ pháp, từ vựng, liên kết), đối chiếu checklist 8 bước tả tranh, chỉ ra lỗi và gợi ý câu sửa → ⑤ nghe lại giọng mình và xem <b>bài mẫu đọc karaoke</b>. Nếu đã nhập Claude API key ở <a href="#/settings">Cài đặt</a>, có thể chấm thêm bằng Claude.</p>
   </div>
   <div class="sec-title"><h2>📘 Bài học</h2></div>
   <div class="lesson-list t-speaking">${LESSONS.filter(l => l.skill === "speaking").map(l => `<a href="#/speaking/lesson/${l.id}"><span class="em">${l.icon}</span><span><b>${h(l.title)}</b></span><span class="done">${Store.data.lessons[l.id] ? '<span class="pill good">✓ Đã học</span>' : ""}</span></a>`).join("")}</div>
+  <a class="card t-speaking" href="#/drill" style="display:flex;gap:14px;align-items:center;margin-top:16px;border-left:4px solid var(--speaking);text-decoration:none;color:var(--ink)"><span style="font-size:34px">🗣️</span><span><b style="font-size:16px">Luyện phản xạ nói theo chủ đề</b><br><span class="small muted">${DRILLS.length} chủ đề từ vựng: nghe → đọc theo → tự nói với từ khóa → trả lời câu hỏi có đếm giờ → nghe đáp án mẫu → nói lại.</span></span><span class="spacer"></span><span class="btn sm primary">Mở →</span></a>
   <a class="card t-speaking" href="#/speaking/bank" style="display:flex;gap:14px;align-items:center;margin-top:16px;border-left:4px solid var(--speaking);text-decoration:none;color:var(--ink)"><span style="font-size:34px">🏛️</span><span><b style="font-size:16px">Ngân hàng đề thật Speaking</b><br><span class="small muted">${SPEAKING_BANK.P1.length} câu Part 1 · ${SPEAKING_BANK.P2.length} tranh Part 2 · ${SPEAKING_BANK.P3.length} cặp tranh Part 3 · ${SPEAKING_BANK.P4.length} đề Part 4 – từ tài liệu “SPEAKING PART 1/2/3/4 – REAL TESTS”, có ảnh và bài mẫu, luyện & chấm AI từng câu.</span></span><span class="spacer"></span><span class="btn sm primary">Mở →</span></a>
-  <div class="sec-title"><h2>📝 14 đề Speaking hoàn chỉnh</h2><span class="pill">${done}/14 đã làm</span></div>
+  <div class="sec-title"><h2>📝 ${SPEAKING_TESTS.length} đề Speaking hoàn chỉnh</h2><span class="pill">${done}/${SPEAKING_TESTS.length} đã làm</span></div>
   <div class="tiles t-speaking">${SPEAKING_TESTS.map(t => { const r = Store.data.results[t.id]; return `<a class="tile" href="#/speaking/test/${t.id}"><div class="thumb" style="background-image:url('${t.p2.img[0]}')"></div><div class="tb"><b>${h(t.title)}</b><small>P1: ${h(t.p1[0].q.slice(0, 34))}…</small><br>${r ? `<span class="pill good">Tốt nhất ${r.best}/50 · ${cefrOf("speaking", r.best)}</span>` : `<span class="pill">Chưa làm</span>`}</div></a>`; }).join("")}</div>
   <div class="sec-title"><h2>🖼️ Part 3 bổ sung (so sánh 2 tranh)</h2></div>
   <div class="tiles t-speaking">${SPEAKING_P3_EXTRA.map(t => `<a class="tile" href="#/speaking/p3/${t.id}"><div class="thumb" style="background-image:url('${t.img[0]}')"></div><div class="tb"><b>${h(t.title)}</b><small>3 câu · 45 giây/câu</small></div></a>`).join("")}</div>`;

@@ -31,6 +31,7 @@ route("home", (view) => {
   <div class="sec-title"><h2>🚀 Truy cập nhanh</h2></div>
   <div class="grid g4">
     <a class="card skill-card t-speaking" href="#/speaking/bank"><div class="head"><span class="em">🏛️</span><b>Đề thật Speaking</b></div><span class="small muted">${SPEAKING_BANK.P2.length + SPEAKING_BANK.P3.length} tranh + ${SPEAKING_BANK.P4.length} đề Part 4, luyện & chấm AI.</span></a>
+    <a class="card skill-card t-speaking" href="#/drill"><div class="head"><span class="em">🗣️</span><b>Luyện phản xạ theo chủ đề</b></div><span class="small muted">${DRILLS.length} chủ đề – nghe, đọc theo, tự nói, đếm giờ.</span></a>
     <a class="card skill-card t-writing" href="#/writing/lesson/wr-p4"><div class="head"><span class="em">📧</span><b>Khung email Part 4</b></div><span class="small muted">3 dạng đề, 10 gợi ý dùng cho mọi đề.</span></a>
     <a class="card skill-card t-listening" href="#/listening"><div class="head"><span class="em">🧠</span><b>Bảng nhớ Listening P3</b></div><span class="small muted">15 chủ đề Man / Woman / Both.</span></a>
     <a class="card skill-card t-tips" href="#/tips"><div class="head"><span class="em">💡</span><b>Tổng hợp mẹo thi</b></div><span class="small muted">Mẹo theo từng kỹ năng + nguồn chính thức.</span></a></div>`;
@@ -83,7 +84,19 @@ route("structure", (view) => {
   ${Object.entries(CUTS).map(([k, c]) => `<tr><td>${SKILLS[k].icon} ${SKILLS[k].name}</td><td>${c.A1}</td><td>${c.A2}</td><td><b>${c.B1}</b></td><td><b>${c.B2}</b></td><td>${c.C}</td></tr>`).join("")}</tbody></table>
   <p class="small muted">Nguồn: Aptis Scoring System v2.1, British Council (Aptis General, bản 2020). Số trong bảng là điểm bắt đầu của mỗi bậc.</p></div>
   <div class="card"><h3>🧮 Cách tính kết quả</h3><ul class="fb"><li>Mỗi kỹ năng: điểm 0–50 và một bậc CEFR riêng. Thi đủ 4 kỹ năng có thêm tổng điểm /200 và CEFR tổng.</li><li>Điểm Grammar & Vocabulary không cộng vào tổng, nhưng nếu điểm kỹ năng nằm sát dưới một ngưỡng và điểm Core cao, kỹ năng đó được nâng lên bậc kế tiếp.</li><li>Speaking & Writing chấm theo thang từng phần (Part 1: 0–5, Part 2–3: 0–5, Part 4: 0–6) dựa trên hoàn thành nhiệm vụ, ngữ pháp, từ vựng, phát âm/chính tả, trôi chảy và liên kết.</li></ul>
-  <p class="small muted">Điểm trong dashboard này là <b>ước lượng</b> để theo dõi tiến bộ, không phải điểm chính thức.</p></div></div>`;
+  <p class="small muted">Điểm trong dashboard này là <b>ước lượng</b> để theo dõi tiến bộ, không phải điểm chính thức.</p></div></div>
+  <div class="sec-title"><h2>📌 Thông tin cần biết khi đăng ký thi (theo tài liệu GV)</h2></div>
+  <div class="grid g2"><div class="card"><h3>🧮 Ví dụ quy đổi CEFR tổng có lợi</h3><p class="small muted">Theo tài liệu “Thông tin cơ bản bài thi” – bậc của 4 kỹ năng → CEFR tổng:</p>
+  <table class="tbl"><tbody><tr><td>B2 – B2 – B1 – B1</td><td><b>B2</b></td></tr><tr><td>C1 – B1 – B1 – B1</td><td><b>B2</b></td></tr><tr><td>C1 – B2 – B1 – A2</td><td><b>B2</b></td></tr><tr><td>C1 – C1 – A2 – A2</td><td><b>B2</b></td></tr><tr><td>C1 – C1 – B1 – A1</td><td><b>B2</b></td></tr></tbody></table>
+  <p class="small">Thời gian có kết quả theo tài liệu: 1–2 ngày sau thi có điểm, 5–8 ngày có chứng chỉ.</p></div>
+  <div class="card"><h3>🗓️ Đăng ký – tra điểm – hoãn/huỷ</h3><ul class="fb">
+  <li>Đăng ký trước ngày thi ít nhất 3 tuần (có thể đăng ký trước gần 2 tháng). Thi ở điểm thi chính thức nào của Hội đồng Anh cũng dùng chung nguồn đề. Thí sinh không chuyên ngoại ngữ chọn dạng <b>General</b>.</li>
+  <li>Đăng ký: <a href="https://aptistests.vn/dang-ky-thong-tin" target="_blank" rel="noopener">aptistests.vn/dang-ky-thong-tin</a> · <a href="https://youtu.be/mwAtgqE56Do" target="_blank" rel="noopener">video hướng dẫn đăng ký</a></li>
+  <li>Tra điểm nhanh (1–2 ngày): <a href="https://credentials.britishcouncil.org/" target="_blank" rel="noopener">credentials.britishcouncil.org</a> → Sign in → truy cập không cần mật khẩu bằng email đăng ký. Cách 2: <a href="https://aptistests.vn/tra-cuu" target="_blank" rel="noopener">aptistests.vn/tra-cuu</a></li>
+  <li>Quy định huỷ/hoãn, hoàn phí, giấy tờ: <a href="https://aptistests.vn/danh-muc/127" target="_blank" rel="noopener">aptistests.vn/danh-muc/127</a> · <a href="https://www.youtube.com/watch?v=sFG52ouAY-w" target="_blank" rel="noopener">video hướng dẫn hoãn/huỷ</a></li>
+  <li>Phúc khảo: <a href="https://www.britishcouncil.vn/thi/aptis/ket-qua" target="_blank" rel="noopener">britishcouncil.vn/thi/aptis/ket-qua</a></li>
+  <li>Thi thử trên máy tính của Hội đồng Anh (mục Prepare for Aptis General): <a href="https://www.britishcouncil.org/exam/english/aptis/practice-materials" target="_blank" rel="noopener">britishcouncil.org – practice materials</a></li></ul>
+  <p class="small muted">Mức phí, thời hạn hoàn phí và lệ phí phúc khảo có thể thay đổi – luôn đối chiếu quy định mới nhất trên aptistests.vn trước khi đăng ký.</p></div></div>`;
 });
 
 route("tips", (view) => {
@@ -100,7 +113,7 @@ route("library", (view, args) => {
   crumbs([["Tổng quan", "#/"], ["Tài liệu gốc", ""]]);
   const cur = LIBRARY.find(d => d.id === args[0]) || LIBRARY[0];
   view.innerHTML = `<div class="page-head t-slate"><div class="ico tinted">📚</div><div><h1>Tài liệu gốc</h1><p>${LIBRARY.length} tài liệu ôn tập chị đã cung cấp, chuyển sang định dạng web để đọc trực tiếp và tra cứu.</p></div></div>
-  <div class="grid" style="grid-template-columns:280px 1fr"><div class="card lib-list" style="padding:10px;max-height:80vh;overflow:auto">${[[1, "📁 Đợt 1"], [2, "🆕 Đợt 2 – mới bổ sung"]].map(([b, l]) => `<div class="nav-sep" style="margin:8px 6px">${l}</div>` + LIBRARY.filter(d => (d.batch || 1) === b).map(d => `<a href="#/library/${d.id}" class="${d.id === cur.id ? "on" : ""}">${d.icon} ${h(d.title)}</a>`).join("")).join("")}</div>
+  <div class="grid" style="grid-template-columns:280px 1fr"><div class="card lib-list" style="padding:10px;max-height:80vh;overflow:auto">${[[1, "📁 Đợt 1"], [2, "📁 Đợt 2"], [3, "🆕 Đợt 3 – mới bổ sung"]].map(([b, l]) => `<div class="nav-sep" style="margin:8px 6px">${l}</div>` + LIBRARY.filter(d => (d.batch || 1) === b).map(d => `<a href="#/library/${d.id}" class="${d.id === cur.id ? "on" : ""}">${d.icon} ${h(d.title)}</a>`).join("")).join("")}</div>
   <div><div class="row" style="margin-bottom:8px"><b>${cur.icon} ${h(cur.title)}</b><span class="spacer"></span><a class="btn sm" href="${cur.file}" target="_blank">↗ Mở tab mới</a></div><iframe class="doc" src="${cur.file}" title="${h(cur.title)}"></iframe></div></div>`;
   if (innerWidth < 760) view.querySelector(".grid").style.gridTemplateColumns = "1fr";
 });

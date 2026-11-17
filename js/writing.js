@@ -69,9 +69,11 @@ function wrRunner(view, t) {
       P.innerHTML = `<div class="card">${t.p4.length > 1 ? `<div class="row" style="margin-bottom:8px"><span class="small muted">Đề có ${t.p4.length} phiên bản Part 4:</span>${t.p4.map((x, k) => `<button class="btn sm ${k === st.v ? "primary" : ""}" data-v="${k}">Version ${k + 1}</button>`).join("")}</div>` : ""}
       <p><b>Part 4.</b> ${h(V.intro.replace(/^Part 4[^:]*:\s*/, ""))} <span class="pill">⏱ 30 phút</span></p>
       <div class="wr-email">${h(V.email.join("\n"))}</div>
+      ${t.vi ? `<details><summary class="small">🇻🇳 Xem bản dịch tiếng Việt của đề Part 4</summary><div class="wr-email" style="border-left-color:var(--ink-3)">${h(t.vi)}</div></details>` : ""}
       <h4>📨 Task 1: ${h(V.tasks[0].task)}</h4><textarea id="e1" style="min-height:130px">${h(st.e1)}</textarea>${wcLine(st.e1, 40, 50)}<div id="r1"></div>
       <h4>🏛️ Task 2: ${h(V.tasks[1].task)}</h4><textarea id="e2" style="min-height:260px">${h(st.e2)}</textarea>${wcLine(st.e2, 120, 150)}<div id="r2"></div>
-      <div class="row" style="margin-top:8px"><button class="btn primary" id="chk">🤖 Chấm Part 4</button>${claudeBtn()}</div></div>`;
+      <div class="row" style="margin-top:8px"><button class="btn primary" id="chk">🤖 Chấm Part 4</button>${claudeBtn()}</div>
+      ${t.alt ? `<details style="margin-top:12px"><summary>📌 Bài mẫu bản cập nhật (tài liệu “Writing practice: Photography, English”)</summary>${t.alt.map(x => `<h4>${h(x.label)}</h4><pre class="tpl ex">${h(x.text)}</pre>`).join("")}</details>` : ""}</div>`;
       $$("[data-v]", P).forEach(b => b.onclick = () => { st.v = +b.dataset.v; persist(); tab(3); });
       bindWC($("#e1"), 40, 50, v => st.e1 = v); bindWC($("#e2"), 120, 150, v => st.e2 = v);
       const show4 = () => { rep($("#r1"), st.res.e1, st.e1, V.tasks[0].sample, "Email thân mật"); rep($("#r2"), st.res.e2, st.e2, V.tasks[1].sample, "Email trang trọng"); };

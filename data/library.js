@@ -278,5 +278,145 @@ window.LIBRARY=[
 "title": "Relative clauses (Mai Hien)",
 "file": "docs/core-relative.html",
 "batch": 2
+},
+{
+"id": "info-exam",
+"icon": "📌",
+"title": "Thông tin cơ bản bài thi Aptis",
+"file": "docs/info-exam.html",
+"batch": 3
+},
+{
+"id": "speaking-test-6",
+"icon": "📄",
+"title": "Speaking Test 6 – Mai Hien (PDF)",
+"file": "docs/speaking-test-6.pdf",
+"batch": 3
+},
+{
+"id": "wr-p12",
+"icon": "✍️",
+"title": "Writing Part 1-2 (ngân hàng câu hỏi)",
+"file": "docs/wr-p12.html",
+"batch": 3
+},
+{
+"id": "wr-p3-food-home",
+"icon": "✍️",
+"title": "Writing Part 3 – Food, Home Living",
+"file": "docs/wr-p3-food-home.html",
+"batch": 3
+},
+{
+"id": "wr-p4-frame-1",
+"icon": "📧",
+"title": "Writing P4 – khung chung & giải pháp (bản 1)",
+"file": "docs/wr-p4-frame-1.html",
+"batch": 3
+},
+{
+"id": "wr-p4-frame-2",
+"icon": "📧",
+"title": "Writing P4 – khung chung & giải pháp (bản 2)",
+"file": "docs/wr-p4-frame-2.html",
+"batch": 3
+},
+{
+"id": "wr-p4-translate",
+"icon": "🇻🇳",
+"title": "Writing P4 – 32 đề + dịch tiếng Việt",
+"file": "docs/wr-p4-translate.html",
+"batch": 3
+},
+{
+"id": "wr-photo-english",
+"icon": "✍️",
+"title": "Writing practice: Photography, English",
+"file": "docs/wr-photo-english.html",
+"batch": 3
+},
+{
+"id": "wr-words-p4",
+"icon": "📒",
+"title": "Words for Writing P4",
+"file": "docs/wr-words-p4.html",
+"batch": 3
+},
+{
+"id": "wr-vocab-p4-1",
+"icon": "📒",
+"title": "Từ vựng Writing P4 (1)",
+"file": "docs/wr-vocab-p4-1.html",
+"batch": 3
+},
+{
+"id": "wr-vocab-1",
+"icon": "✨",
+"title": "Vocab for Writing (1)",
+"file": "docs/wr-vocab-1.html",
+"batch": 3
+},
+{
+"id": "vocab-tech",
+"icon": "📱",
+"title": "Vocabs for technology",
+"file": "docs/vocab-tech.html",
+"batch": 3
+},
+{
+"id": "vocab-topics",
+"icon": "🧠",
+"title": "Vocab theo chủ đề",
+"file": "docs/vocab-topics.html",
+"batch": 3
+},
+{
+"id": "vocab-mental-health-money",
+"icon": "🧠",
+"title": "Vocab tinh thần – sức khoẻ – tiền",
+"file": "docs/vocab-mental-health-money.html",
+"batch": 3
+},
+{
+"id": "vocab-mental-health",
+"icon": "💪",
+"title": "Speaking Part 1: tinh thần, sức khoẻ",
+"file": "docs/vocab-mental-health.html",
+"batch": 3
+},
+{
+"id": "vocab-knowledge",
+"icon": "📚",
+"title": "Từ vựng chủ đề Kiến thức",
+"file": "docs/vocab-knowledge.html",
+"batch": 3
+},
+{
+"id": "vocab-money",
+"icon": "💰",
+"title": "Từ vựng chủ đề tiền bạc",
+"file": "docs/vocab-money.html",
+"batch": 3
+},
+{
+"id": "vocab-place",
+"icon": "📍",
+"title": "Từ vựng liên quan đến địa điểm",
+"file": "docs/vocab-place.html",
+"batch": 3
+},
+{
+"id": "vocab-people",
+"icon": "👩",
+"title": "Từ vựng liên quan đến người",
+"file": "docs/vocab-people.html",
+"batch": 3
+},
+{
+"id": "vocab-speaking-topics",
+"icon": "🍲",
+"title": "Từ vựng chủ đề hay gặp trong Aptis Speaking",
+"file": "docs/vocab-speaking-topics.html",
+"batch": 3
 }
 ];
