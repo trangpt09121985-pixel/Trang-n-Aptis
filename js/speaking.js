@@ -7,13 +7,18 @@ const SP_INSTR = {
 };
 const P4_ICON = ["🌟", "🎁", "⏳", "🧭", "🗓️", "🌍", "🤝", "🔄", "🧗", "🎵", "🏅", "👥", "📚", "🤗"];
 
+function altHTML(it, open) {
+  if (!it.alt) return "";
+  const m = it.alt.match(/^([^:]{3,90}):\s*([\s\S]*)$/); const label = m ? m[1] : "Đáp án tham khảo khác", text = m ? m[2] : it.alt;
+  return `<details ${open ? "open" : ""} style="margin-top:10px"><summary>📌 ${h(label)}</summary><p class="ex">${h(text)}</p></details>`;
+}
 function spItems(test) {
   const items = [];
-  test.p1.forEach((q, i) => items.push({ part: 1, qi: i, q: q.q, a: q.a, sup: q.sup, sec: 30 }));
-  test.p2.qs.forEach((q, i) => items.push({ part: 2, qi: i, q: q.q, a: q.a, sup: q.sup, sec: 45, img: test.p2.img }));
-  test.p3.qs.forEach((q, i) => items.push({ part: 3, qi: i, q: q.q, a: q.a, sup: q.sup, sec: 45, img: test.p3.img }));
+  test.p1.forEach((q, i) => items.push({ part: 1, qi: i, q: q.q, a: q.a, alt: q.alt, sup: q.sup, sec: 30 }));
+  test.p2.qs.forEach((q, i) => items.push({ part: 2, qi: i, q: q.q, a: q.a, alt: q.alt, sup: q.sup, sec: 45, img: test.p2.img }));
+  test.p3.qs.forEach((q, i) => items.push({ part: 3, qi: i, q: q.q, a: q.a, alt: q.alt, sup: q.sup, sec: 45, img: test.p3.img }));
   const p4 = test.p4.qs;
-  items.push({ part: 4, qi: 0, q: p4.map(x => x.q).join(" "), qs: p4.map(x => x.q), a: p4.map(x => x.a).join(" "), sec: 120, prep: 60, img: test.p4.img, icon: P4_ICON[(parseInt(test.id.slice(1)) - 1) % P4_ICON.length] });
+  items.push({ part: 4, qi: 0, q: p4.map(x => x.q).join(" "), qs: p4.map(x => x.q), a: p4.map(x => x.a).join(" "), alt: (() => { const A = p4.map(x => x.alt).filter(Boolean); return A.length ? A[0].replace(/:\s*[\s\S]*$/, "") + ": " + A.map(x => x.replace(/^[^:]{3,90}:\s*/, "")).join(" ") : undefined; })(), sec: 120, prep: 60, img: test.p4.img, icon: P4_ICON[(parseInt(test.id.slice(1)) - 1) % P4_ICON.length] });
   return items;
 }
 
@@ -35,7 +40,7 @@ route("speaking", (view, args) => {
   <div class="sec-title"><h2>📘 Bài học</h2></div>
   <div class="lesson-list t-speaking">${LESSONS.filter(l => l.skill === "speaking").map(l => `<a href="#/speaking/lesson/${l.id}"><span class="em">${l.icon}</span><span><b>${h(l.title)}</b></span><span class="done">${Store.data.lessons[l.id] ? '<span class="pill good">✓ Đã học</span>' : ""}</span></a>`).join("")}</div>
   <a class="card t-speaking" href="#/drill" style="display:flex;gap:14px;align-items:center;margin-top:16px;border-left:4px solid var(--speaking);text-decoration:none;color:var(--ink)"><span style="font-size:34px">🗣️</span><span><b style="font-size:16px">Luyện phản xạ nói theo chủ đề</b><br><span class="small muted">${DRILLS.length} chủ đề từ vựng: nghe → đọc theo → tự nói với từ khóa → trả lời câu hỏi có đếm giờ → nghe đáp án mẫu → nói lại.</span></span><span class="spacer"></span><span class="btn sm primary">Mở →</span></a>
-  <a class="card t-speaking" href="#/speaking/bank" style="display:flex;gap:14px;align-items:center;margin-top:16px;border-left:4px solid var(--speaking);text-decoration:none;color:var(--ink)"><span style="font-size:34px">🏛️</span><span><b style="font-size:16px">Ngân hàng đề thật Speaking</b><br><span class="small muted">${SPEAKING_BANK.P1.length} câu Part 1 · ${SPEAKING_BANK.P2.length} tranh Part 2 · ${SPEAKING_BANK.P3.length} cặp tranh Part 3 · ${SPEAKING_BANK.P4.length} đề Part 4 – từ tài liệu “SPEAKING PART 1/2/3/4 – REAL TESTS”, có ảnh và bài mẫu, luyện & chấm AI từng câu.</span></span><span class="spacer"></span><span class="btn sm primary">Mở →</span></a>
+  <a class="card t-speaking" href="#/speaking/bank" style="display:flex;gap:14px;align-items:center;margin-top:16px;border-left:4px solid var(--speaking);text-decoration:none;color:var(--ink)"><span style="font-size:34px">🏛️</span><span><b style="font-size:16px">Ngân hàng đề thật Speaking</b><br><span class="small muted">${SPEAKING_BANK.P1.length} câu Part 1 · ${SPEAKING_BANK.P2.length} tranh Part 2 · ${SPEAKING_BANK.P3.length} cặp tranh Part 3 · ${SPEAKING_BANK.P4.length + SPEAKING_BANK.P4FULL.length} đề Part 4 – từ tài liệu “SPEAKING PART 1/2/3/4 – REAL TESTS”, có ảnh và bài mẫu, luyện & chấm AI từng câu.</span></span><span class="spacer"></span><span class="btn sm primary">Mở →</span></a>
   <div class="sec-title"><h2>📝 ${SPEAKING_TESTS.length} đề Speaking hoàn chỉnh</h2><span class="pill">${done}/${SPEAKING_TESTS.length} đã làm</span></div>
   <div class="tiles t-speaking">${SPEAKING_TESTS.map(t => { const r = Store.data.results[t.id]; return `<a class="tile" href="#/speaking/test/${t.id}"><div class="thumb" style="background-image:url('${t.p2.img[0]}')"></div><div class="tb"><b>${h(t.title)}</b><small>P1: ${h(t.p1[0].q.slice(0, 34))}…</small><br>${r ? `<span class="pill good">Tốt nhất ${r.best}/50 · ${cefrOf("speaking", r.best)}</span>` : `<span class="pill">Chưa làm</span>`}</div></a>`; }).join("")}</div>
   <div class="sec-title"><h2>🖼️ Part 3 bổ sung (so sánh 2 tranh)</h2></div>
@@ -143,8 +148,8 @@ function spRunner(view, test, itemsOverride) {
     const it = items[state.i], ans = state.answers[state.i];
     const el = $("#report");
     if (modelOnly && !it.a) { el.innerHTML = `<div class="card"><h3>📌 Bài mẫu</h3><p>Đề gốc chưa có bài mẫu cho câu này. Hãy áp dụng khung: <a href="#/speaking/lesson/sp-describe">tả tranh 8 bước</a> · <a href="#/speaking/lesson/sp-5tips">5 mẹo phát triển ý</a> · <a href="#/speaking/lesson/sp-compare">khung “Both…”</a> · <a href="#/speaking/lesson/sp-part4">4 câu chuyện đa năng</a>, rồi bấm Chấm điểm AI để nhận góp ý.</p></div>`; return; }
-    if (modelOnly && !ans.res) { el.innerHTML = `<div class="card"><h3>📌 Bài mẫu – ${h(it.part === 4 ? "Part 4" : it.q)}</h3><p class="ex" style="font-size:15.5px">${h(it.a)}</p><button class="btn sm blue" data-karaoke>▶ Xem minh họa đọc mẫu (karaoke)</button><div class="kara-box transcript" style="margin-top:8px;display:none"></div></div>`; Scorer.bindReport(el, it.a); el.scrollIntoView({ behavior: "smooth" }); return; }
-    el.innerHTML = Scorer.reportHTML(ans.res, { color: "var(--speaking)", text: ans.text, model: it.a, title: `Kết quả Part ${it.part}${it.part < 4 ? " · Câu " + (it.qi + 1) : ""}` });
+    if (modelOnly && !ans.res) { el.innerHTML = `<div class="card"><h3>📌 Bài mẫu – ${h(it.part === 4 ? "Part 4" : it.q)}</h3><p class="ex" style="font-size:15.5px">${h(it.a)}</p><button class="btn sm blue" data-karaoke>▶ Xem minh họa đọc mẫu (karaoke)</button><div class="kara-box transcript" style="margin-top:8px;display:none"></div>${altHTML(it, true)}</div>`; Scorer.bindReport(el, it.a); el.scrollIntoView({ behavior: "smooth" }); return; }
+    el.innerHTML = Scorer.reportHTML(ans.res, { color: "var(--speaking)", text: ans.text, model: it.a, title: `Kết quả Part ${it.part}${it.part < 4 ? " · Câu " + (it.qi + 1) : ""}` }) + altHTML(it);
     Scorer.bindReport(el, it.a); el.scrollIntoView({ behavior: "smooth", block: "start" });
   }
   function summary() {
@@ -190,18 +195,21 @@ function spFree(view) {
 }
 
 /* ===== Ngân hàng đề thật Speaking ===== */
+const STORY2_NAME = { 1: "Câu chuyện vạn năng 1 – Về quê cùng gia đình", 2: "Câu chuyện vạn năng 2 – Giúp người lạ gặp khó khăn", 3: "Câu chuyện vạn năng 3 – Mua váy gấp cho đám cưới", 4: "Câu chuyện vạn năng 4 – Cố gắng thi Aptis" };
 const STORY_NAME = { 1: "Câu chuyện 1 – Ngày tôi đi thi Aptis", 2: "Câu chuyện 2 – Thăm bà", 3: "Câu chuyện 3 – Một ngày đặc biệt", 4: "Câu chuyện 4 – Chuyến đi Đà Nẵng" };
 function spBankPage(view, tab) {
   crumbs([["Tổng quan", "#/"], ["Speaking", "#/speaking"], ["Ngân hàng đề thật", ""]]);
   const B = SPEAKING_BANK; tab = tab || "P2";
   view.innerHTML = `<div class="page-head t-speaking"><div class="ico tinted">🏛️</div><div><h1>Ngân hàng đề thật Speaking</h1><p>Tổng hợp từ “SPEAKING PART 1 – REAL TESTS”, “SPEAKING PART 2,3,4 – REAL TESTS”, “Sp P12 practice” và “speaking P2 thực hành”. Bấm <b>🎙️ Luyện</b> để vào phòng thi mô phỏng và được chấm AI. Câu hỏi gốc bằng tiếng Việt đã được dịch sang tiếng Anh như trong phòng thi.</p></div></div>
-  <div class="tabs">${[["P1", "Part 1 – " + B.P1.length + " câu"], ["P2", "Part 2 – " + B.P2.length + " tranh"], ["P3", "Part 3 – " + B.P3.length + " cặp tranh"], ["P4", "Part 4 – " + B.P4.length + " đề"]].map(([k, l]) => `<button class="${k === tab ? "on" : ""}" onclick="go('#/speaking/bank/tab/${k}')">${l}</button>`).join("")}</div><div id="bankBody"></div>`;
+  <div class="tabs">${[["P1", "Part 1 – " + B.P1.length + " câu"], ["P2", "Part 2 – " + B.P2.length + " tranh"], ["P3", "Part 3 – " + B.P3.length + " cặp tranh"], ["P4", "Part 4 – " + (B.P4.length + B.P4FULL.length) + " đề"]].map(([k, l]) => `<button class="${k === tab ? "on" : ""}" onclick="go('#/speaking/bank/tab/${k}')">${l}</button>`).join("")}</div><div id="bankBody"></div>`;
   const body = $("#bankBody");
   if (tab === "P1") {
     body.innerHTML = `<div class="row" style="margin-bottom:10px"><a class="btn primary" href="#/speaking/bank/P1R">🎲 Luyện ngẫu nhiên 3 câu Part 1</a><span class="small muted">Mỗi câu 30 giây, đúng như đề thật.</span></div>` +
       B.P1.map(x => `<div class="q"><div class="row"><b style="flex:1">${h(x.q)}</b><a class="btn sm" href="#/speaking/bank/${x.id}">🎙️ Luyện</a></div>${x.note ? `<p class="small muted">${h(x.note)}</p>` : ""}${x.a ? `<details><summary class="small">📌 Bài mẫu</summary><p class="ex">${h(x.a)}</p></details>` : `<p class="small muted">Chưa có bài mẫu – áp dụng 5 mẹo phát triển ý.</p>`}</div>`).join("");
   } else if (tab === "P4") {
-    body.innerHTML = `<div class="tiles t-speaking">${B.P4.map(t => `<a class="tile" href="#/speaking/bank/${t.id}"><div class="thumb" style="height:70px;font-size:30px">${P4_ICON[(t.n - 1) % P4_ICON.length]}</div><div class="tb"><b>Đề ${t.n}: ${h(t.title)}</b><small>${h(t.qs[0]?.q || "")}</small>${t.story ? `<br><span class="pill good">Dùng ${h(STORY_NAME[t.story].split(" – ")[0])}</span>` : ""}${t.qs.some(q => q.a) ? ` <span class="pill">Có bài mẫu</span>` : ""}</div></a>`).join("")}</div>`;
+    body.innerHTML = `<div class="callout small">🆕 <b>${B.P4FULL.length} bộ câu hỏi Part 4 đầy đủ 3 câu</b> (tổng hợp và dịch đề của Ms Mai Hien) – mỗi bộ có gợi ý nghĩa tiếng Việt và câu chuyện “vạn năng” nên dùng. Xem <a href="#/speaking/lesson/sp-p4-form">khung trả lời & 4 câu chuyện vạn năng bản B1</a>.</div>
+    <div class="tiles t-speaking">${B.P4FULL.map(t => `<a class="tile" href="#/speaking/bank/${t.id}"><div class="tb"><b>${t.n}. ${h(t.title)}</b>${t.vi ? `<small>${h(t.vi)}</small>` : ""}<br>${t.story2 ? `<span class="pill good">Câu chuyện vạn năng ${t.story2}</span>` : `<span class="pill">Tự kể theo khung</span>`}</div></a>`).join("")}</div>
+    <div class="sec-title"><h3>📁 45 đề Part 4 từ “SPEAKING PART 2,3,4 – REAL TESTS”</h3></div><div class="tiles t-speaking">${B.P4.map(t => `<a class="tile" href="#/speaking/bank/${t.id}"><div class="thumb" style="height:70px;font-size:30px">${P4_ICON[(t.n - 1) % P4_ICON.length]}</div><div class="tb"><b>Đề ${t.n}: ${h(t.title)}</b><small>${h(t.qs[0]?.q || "")}</small>${t.story ? `<br><span class="pill good">Dùng ${h(STORY_NAME[t.story].split(" – ")[0])}</span>` : ""}${t.qs.some(q => q.a) ? ` <span class="pill">Có bài mẫu</span>` : ""}</div></a>`).join("")}</div>`;
   } else {
     const list = B[tab];
     body.innerHTML = `<div class="tiles t-speaking">${list.map(t => `<a class="tile" href="#/speaking/bank/${t.id}"><div class="thumb" style="${t.img.length ? `background-image:url('${t.img[0]}')` : ""}">${t.img.length ? "" : "🖼️"}</div><div class="tb"><b>${h(t.id.startsWith("MH") ? t.title : (tab === "P2" ? "Tranh " : "Cặp tranh ") + t.n + ": " + t.title)}</b><small>${t.qs.length} câu hỏi${t.qs.some(q => q.a) ? " · có bài mẫu" : ""}</small></div></a>`).join("")}</div>`;
@@ -216,6 +224,8 @@ function spBankRun(view, id) {
   if (t) return spRunner(view, { id, title: t.id.startsWith("MH") ? t.title : "Part 2 – Tranh " + t.n + ": " + t.title, bank: true }, t.qs.map((q, i) => ({ part: 2, qi: i, q: q.q, a: q.a, sup: q.sup, sec: 45, img: t.img, note: t.note, title: t.title })));
   t = B.P3.find(x => x.id === id);
   if (t) return spRunner(view, { id, title: "Part 3 – Cặp tranh " + t.n + ": " + t.title, bank: true }, t.qs.map((q, i) => ({ part: 3, qi: i, q: q.q, a: q.a, sup: q.sup, sec: 45, img: t.img, note: t.note, title: t.title })));
+  t = B.P4FULL.find(x => x.id === id);
+  if (t) return spRunner(view, { id, title: "Part 4 – " + t.title, bank: true }, [{ part: 4, qi: 0, q: t.qs.map(x => x.q).join(" "), qs: t.qs.map(x => x.q), a: "", sec: 120, prep: 60, sup: t.qs.some(x => x.sup), icon: P4_ICON[(t.n - 1) % P4_ICON.length], hint: (t.vi ? `Nghĩa: <i>${h(t.vi)}</i>. ` : "") + (t.story2 ? `Gợi ý: dùng <a href="#/speaking/lesson/sp-p4-form">${h(STORY2_NAME[t.story2])}</a> rồi đổi vài chi tiết cho khớp đề.` : `Kể theo khung: Regarding the first question… → Turning to the second question… → About the last question…`) }]);
   t = B.P4.find(x => x.id === id);
   if (t) return spRunner(view, { id, title: "Part 4 – Đề " + t.n + ": " + t.title, bank: true }, [{ part: 4, qi: 0, q: t.qs.map(x => x.q).join(" "), qs: t.qs.map(x => x.q), a: t.qs.map(x => x.a).filter(Boolean).join(" "), sec: 120, prep: 60, sup: t.qs.some(x => x.sup), icon: P4_ICON[(t.n - 1) % P4_ICON.length], hint: t.story ? `Gợi ý: có thể dùng <a href="#/speaking/lesson/sp-part4">${h(STORY_NAME[t.story])}</a> (học 1 chuyện – dùng nhiều đề).` : "Đề này chưa có câu chuyện mẫu – kể theo dàn ý: khi nào, ở đâu, với ai → cảm xúc (At first… then…) → ý kiến chung." }]);
   go("#/speaking/bank");

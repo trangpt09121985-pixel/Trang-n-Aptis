@@ -418,5 +418,131 @@ window.LIBRARY=[
 "title": "Từ vựng chủ đề hay gặp trong Aptis Speaking",
 "file": "docs/vocab-speaking-topics.html",
 "batch": 3
+},
+{
+"id": "mh-test1",
+"icon": "🎤",
+"title": "Test 1 – Đáp án (Mai Hien)",
+"file": "docs/mh-test1.html",
+"batch": 4
+},
+{
+"id": "mh-test2",
+"icon": "🎤",
+"title": "Test 2 – Đáp án (Mai Hien)",
+"file": "docs/mh-test2.html",
+"batch": 4
+},
+{
+"id": "mh-test3",
+"icon": "🎤",
+"title": "Test 3 – Đáp án (Mai Hien)",
+"file": "docs/mh-test3.html",
+"batch": 4
+},
+{
+"id": "mh-test4",
+"icon": "🎤",
+"title": "Test 4 – Đáp án (Mai Hien)",
+"file": "docs/mh-test4.html",
+"batch": 4
+},
+{
+"id": "mh-test5",
+"icon": "🎤",
+"title": "Test 5 – Đáp án (Mai Hien)",
+"file": "docs/mh-test5.html",
+"batch": 4
+},
+{
+"id": "mh-test6",
+"icon": "🎤",
+"title": "Test 6 – Đáp án (Mai Hien)",
+"file": "docs/mh-test6.html",
+"batch": 4
+},
+{
+"id": "mh-test7",
+"icon": "🎤",
+"title": "Test 7 – Đáp án (Mai Hien)",
+"file": "docs/mh-test7.html",
+"batch": 4
+},
+{
+"id": "sp-sport-event",
+"icon": "🏟️",
+"title": "Sport event (Test 7 – bản đơn giản kèm từ khóa)",
+"file": "docs/sp-sport-event.html",
+"batch": 4
+},
+{
+"id": "sp-part1",
+"icon": "🎤",
+"title": "Speaking Part 1 (26 câu có đáp án)",
+"file": "docs/sp-part1.html",
+"batch": 4
+},
+{
+"id": "sp-part4-gift",
+"icon": "🎤",
+"title": "Speaking Part 4 – got a gift, cảm xúc",
+"file": "docs/sp-part4-gift.html",
+"batch": 4
+},
+{
+"id": "sp-part4-list",
+"icon": "🎤",
+"title": "Speaking Part 4 – 41 tình huống (có nghĩa tiếng Việt)",
+"file": "docs/sp-part4-list.html",
+"batch": 4
+},
+{
+"id": "sp-p4-dich-de",
+"icon": "🇻🇳",
+"title": "Speaking P4 – dịch đề (32 bộ câu hỏi)",
+"file": "docs/sp-p4-dich-de.html",
+"batch": 4
+},
+{
+"id": "sp-p4-form",
+"icon": "🧯",
+"title": "Speaking P4 – form & bài chống cháy",
+"file": "docs/sp-p4-form.html",
+"batch": 4
+},
+{
+"id": "sp-p4-summary",
+"icon": "📖",
+"title": "Tổng hợp Speaking P4 & 4 câu chuyện vạn năng",
+"file": "docs/sp-p4-summary.html",
+"batch": 4
+},
+{
+"id": "wr-sports-club",
+"icon": "✍️",
+"title": "Writing – Sports Club (kèm gợi ý đáp án)",
+"file": "docs/wr-sports-club.html",
+"batch": 4
+},
+{
+"id": "speaking-test-1-2-3",
+"icon": "📄",
+"title": "Speaking TEST 1-2-3 (PDF)",
+"file": "docs/speaking-test-1-2-3.pdf",
+"batch": 4
+},
+{
+"id": "speaking-part3-3tests",
+"icon": "📄",
+"title": "Speaking Part 3 – 3 tests (PDF)",
+"file": "docs/speaking-part3-3tests.pdf",
+"batch": 4
+},
+{
+"id": "speaking-part2-3tests",
+"icon": "📄",
+"title": "Speaking Part 2 – 3 tests (PDF)",
+"file": "docs/speaking-part2-3tests.pdf",
+"batch": 4
 }
 ];
