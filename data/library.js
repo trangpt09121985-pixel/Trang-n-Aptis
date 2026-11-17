@@ -544,5 +544,271 @@ window.LIBRARY=[
 "title": "Speaking Part 2 – 3 tests (PDF)",
 "file": "docs/speaking-part2-3tests.pdf",
 "batch": 4
+},
+{
+"id": "mh-test8",
+"icon": "🎙️",
+"title": "Test 8 – Đáp án (Mai Hien) → luyện tại Speaking Test 22",
+"file": "docs/mh-test8.html",
+"batch": 5
+},
+{
+"id": "mh-test9",
+"icon": "🎙️",
+"title": "Test 9 – Đáp án (Mai Hien) → luyện tại Speaking Test 23",
+"file": "docs/mh-test9.html",
+"batch": 5
+},
+{
+"id": "mh-test10",
+"icon": "🎙️",
+"title": "Test 10 – Đáp án (Mai Hien) → luyện tại Speaking Test 24",
+"file": "docs/mh-test10.html",
+"batch": 5
+},
+{
+"id": "mh-test11",
+"icon": "🎙️",
+"title": "Test 11 – Đáp án (Mai Hien) → luyện tại Speaking Test 25",
+"file": "docs/mh-test11.html",
+"batch": 5
+},
+{
+"id": "mh-test12",
+"icon": "🎙️",
+"title": "Test 12 – Đáp án (Mai Hien) → luyện tại Speaking Test 26",
+"file": "docs/mh-test12.html",
+"batch": 5
+},
+{
+"id": "mh-test13",
+"icon": "🎙️",
+"title": "Test 13 – Đáp án (Mai Hien) → luyện tại Speaking Test 27",
+"file": "docs/mh-test13.html",
+"batch": 5
+},
+{
+"id": "mh-test14",
+"icon": "🎙️",
+"title": "Test 14 – Đáp án (Mai Hien) → luyện tại Speaking Test 28",
+"file": "docs/mh-test14.html",
+"batch": 5
+},
+{
+"id": "mh-test15",
+"icon": "🎙️",
+"title": "Test 15 – Đáp án (Mai Hien) → luyện tại Speaking Test 29",
+"file": "docs/mh-test15.html",
+"batch": 5
+},
+{
+"id": "mh-test16",
+"icon": "🎙️",
+"title": "Test 16 – Đáp án (Mai Hien) → luyện tại Speaking Test 30",
+"file": "docs/mh-test16.html",
+"batch": 5
+},
+{
+"id": "mh-test17",
+"icon": "🎙️",
+"title": "Test 17 – Đáp án (Mai Hien) → luyện tại Speaking Test 31",
+"file": "docs/mh-test17.html",
+"batch": 5
+},
+{
+"id": "mh-test18",
+"icon": "🎙️",
+"title": "Test 18 – Đáp án (Mai Hien) → luyện tại Speaking Test 32",
+"file": "docs/mh-test18.html",
+"batch": 5
+},
+{
+"id": "mh-test19",
+"icon": "🎙️",
+"title": "Test 19 – Đáp án (Mai Hien) → luyện tại Speaking Test 33",
+"file": "docs/mh-test19.html",
+"batch": 5
+},
+{
+"id": "mh-test20",
+"icon": "🎙️",
+"title": "Test 20 – Đáp án (Mai Hien) → luyện tại Speaking Test 34",
+"file": "docs/mh-test20.html",
+"batch": 5
+},
+{
+"id": "mh-test21",
+"icon": "🎙️",
+"title": "Test 21 – Đáp án (Mai Hien) → luyện tại Speaking Test 35",
+"file": "docs/mh-test21.html",
+"batch": 5
+},
+{
+"id": "mh-test22",
+"icon": "🎙️",
+"title": "Test 22 – Đáp án (Mai Hien) → luyện tại Speaking Test 36",
+"file": "docs/mh-test22.html",
+"batch": 5
+},
+{
+"id": "mh-test23",
+"icon": "🎙️",
+"title": "Test 23 – Đáp án (Mai Hien) → luyện tại Speaking Test 37",
+"file": "docs/mh-test23.html",
+"batch": 5
+},
+{
+"id": "mh-test25",
+"icon": "🎙️",
+"title": "Test 25 – Đáp án (Mai Hien) → luyện tại Speaking Test 38",
+"file": "docs/mh-test25.html",
+"batch": 5
+},
+{
+"id": "mh-test26",
+"icon": "🎙️",
+"title": "Test 26 – Đáp án (Mai Hien) → luyện tại Speaking Test 39",
+"file": "docs/mh-test26.html",
+"batch": 5
+},
+{
+"id": "mh-test27",
+"icon": "🎙️",
+"title": "Test 27 – Đáp án (Mai Hien) → luyện tại Speaking Test 40",
+"file": "docs/mh-test27.html",
+"batch": 6
+},
+{
+"id": "wr-art-club",
+"icon": "✍️",
+"title": "Writing – Art Club → đề 01",
+"file": "docs/wr-art-club.html",
+"batch": 6
+},
+{
+"id": "wr-book-club",
+"icon": "✍️",
+"title": "Writing – Book Club → đề 02",
+"file": "docs/wr-book-club.html",
+"batch": 6
+},
+{
+"id": "wr-book-club-2",
+"icon": "✍️",
+"title": "Writing – Book Club 2 → đề 03",
+"file": "docs/wr-book-club-2.html",
+"batch": 6
+},
+{
+"id": "wr-business-club",
+"icon": "✍️",
+"title": "Writing – Business Club → đề 04",
+"file": "docs/wr-business-club.html",
+"batch": 6
+},
+{
+"id": "wr-car-club",
+"icon": "✍️",
+"title": "Writing – Car Club → đề 05",
+"file": "docs/wr-car-club.html",
+"batch": 6
+},
+{
+"id": "wr-college-club",
+"icon": "✍️",
+"title": "Writing – College Club → đề 06",
+"file": "docs/wr-college-club.html",
+"batch": 6
+},
+{
+"id": "wr-community-club",
+"icon": "✍️",
+"title": "Writing – Community Club → đề 07",
+"file": "docs/wr-community-club.html",
+"batch": 6
+},
+{
+"id": "wr-computer-club",
+"icon": "✍️",
+"title": "Writing – Computer Club → đề 08",
+"file": "docs/wr-computer-club.html",
+"batch": 6
+},
+{
+"id": "wr-debate-club",
+"icon": "✍️",
+"title": "Writing – Debate Club → đề 09",
+"file": "docs/wr-debate-club.html",
+"batch": 6
+},
+{
+"id": "wr-english-club",
+"icon": "✍️",
+"title": "Writing – English Club → đề 10",
+"file": "docs/wr-english-club.html",
+"batch": 6
+},
+{
+"id": "wr-english-club-2",
+"icon": "✍️",
+"title": "Writing – English Club 2 → đề 11",
+"file": "docs/wr-english-club-2.html",
+"batch": 6
+},
+{
+"id": "wr-fashion-club",
+"icon": "✍️",
+"title": "Writing – Fashion Club → đề 12",
+"file": "docs/wr-fashion-club.html",
+"batch": 6
+},
+{
+"id": "wr-film-club",
+"icon": "✍️",
+"title": "Writing – Film Club → đề 13",
+"file": "docs/wr-film-club.html",
+"batch": 6
+},
+{
+"id": "wr-fitness-club-1",
+"icon": "✍️",
+"title": "Writing – Fitness Club 1 → đề 14",
+"file": "docs/wr-fitness-club-1.html",
+"batch": 6
+},
+{
+"id": "wr-fitness-club-2",
+"icon": "✍️",
+"title": "Writing – Fitness Club 2 → đề 15",
+"file": "docs/wr-fitness-club-2.html",
+"batch": 6
+},
+{
+"id": "wr-food-club",
+"icon": "✍️",
+"title": "Writing – Food Club → đề 16",
+"file": "docs/wr-food-club.html",
+"batch": 6
+},
+{
+"id": "wr-home-living-club",
+"icon": "✍️",
+"title": "Writing – Home living Club → đề 17",
+"file": "docs/wr-home-living-club.html",
+"batch": 6
+},
+{
+"id": "wr-museum-club",
+"icon": "✍️",
+"title": "Writing – Museum Club → đề 18",
+"file": "docs/wr-museum-club.html",
+"batch": 6
+},
+{
+"id": "wr-music-club-1",
+"icon": "✍️",
+"title": "Writing – Music Club 1 → đề 19",
+"file": "docs/wr-music-club-1.html",
+"batch": 6
 }
 ];

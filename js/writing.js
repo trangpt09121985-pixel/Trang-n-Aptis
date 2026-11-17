@@ -8,15 +8,17 @@ route("writing", (view, args) => {
   const ic = t => icons[t.title.toLowerCase().split(" ")[0]] || "✍️";
   view.innerHTML = `
   <div class="page-head t-writing"><div class="ico tinted">✍️</div><div><h1>Writing – ${WRITING_TESTS.length} đề có bài mẫu</h1>
-  <p>32 đề đủ 4 phần + 7 đề bổ sung (Beautiful Homes, Gardening, Cinema, English v3–v4, Design, Exercise). Mỗi đề gồm các phần như đề thật (5 tin nhắn · form 20–30 từ · 3 câu chat 30–40 từ · 2 email). Bài làm được đếm từ, kiểm tra bố cục, phát hiện lỗi và đối chiếu bài mẫu từ tài liệu "Đáp án 32 đề Aptis Writing".</p></div></div>
+  <p>32 đề đủ 4 phần + 7 đề bổ sung (Beautiful Homes, Gardening, Cinema, English v3–v4, Design, Exercise). Mỗi đề gồm các phần như đề thật (5 tin nhắn · form 20–30 từ · 3 câu chat 30–40 từ · 2 email). Bài làm được đếm từ, kiểm tra bố cục, phát hiện lỗi và đối chiếu bài mẫu từ tài liệu "Đáp án 32 đề Aptis Writing". Đề có nhãn 📗 có thêm đáp án bản mới (đợt 6) ở cuối mỗi phần.</p></div></div>
   <div class="sec-title"><h2>📘 Bài học</h2></div>
   <div class="lesson-list t-writing">${LESSONS.filter(l => l.skill === "writing").map(l => `<a href="#/writing/lesson/${l.id}"><span class="em">${l.icon}</span><span><b>${h(l.title)}</b></span><span class="done">${Store.data.lessons[l.id] ? '<span class="pill good">✓ Đã học</span>' : ""}</span></a>`).join("")}</div>
   <div class="sec-title"><h2>📝 ${WRITING_TESTS.length} đề Writing</h2><span class="pill">${done}/${WRITING_TESTS.length} đã làm</span></div>
-  <div class="tiles t-writing">${WRITING_TESTS.map(t => { const r = Store.data.results[t.id]; return `<a class="tile" href="#/writing/test/${t.id}"><div class="thumb">${ic(t)}</div><div class="tb"><b>${h(t.id.replace("W", "Đề "))}: ${h(t.title)}</b><small>${h((t.p2?.q || t.p4[0].email.slice(1).join(' ')).slice(0, 48))}…</small>${t.gv ? ' <span class="tag-sup">Bài mẫu GV soạn</span>' : ''}${t.src && !t.gv ? ' <span class="tag-sup">Mới</span>' : ''}<br>${r ? `<span class="pill good">Tốt nhất ${r.best}/50 · ${cefrOf("writing", r.best)}</span>` : `<span class="pill">Chưa làm</span>`}</div></a>`; }).join("")}</div>`;
+  <div class="tiles t-writing">${WRITING_TESTS.map(t => { const r = Store.data.results[t.id]; return `<a class="tile" href="#/writing/test/${t.id}"><div class="thumb">${ic(t)}</div><div class="tb"><b>${h(t.id.replace("W", "Đề "))}: ${h(t.title)}</b><small>${h((t.p2?.q || t.p4[0].email.slice(1).join(' ')).slice(0, 48))}…</small>${t.gv ? ' <span class="tag-sup">Bài mẫu GV soạn</span>' : ''}${t.src && !t.gv ? ' <span class="tag-sup">Mới</span>' : ''}${t.v2 ? ' <span class="tag-sup">📗 Đáp án mới</span>' : ''}<br>${r ? `<span class="pill good">Tốt nhất ${r.best}/50 · ${cefrOf("writing", r.best)}</span>` : `<span class="pill">Chưa làm</span>`}</div></a>`; }).join("")}</div>`;
 });
 
 function wrRunner(view, t) {
   if (!t) return go("#/writing");
+  const V2 = t.v2;
+  const v2Box = (inner, open) => `<details class="v2box" style="margin-top:12px;border:1px dashed var(--writing);border-radius:10px;padding:8px 12px"${open ? " open" : ""}><summary><b>📗 Đáp án bản mới (đợt 6 – tài liệu “${h(V2.src)}”)</b></summary>${inner}</details>`;
   crumbs([["Tổng quan", "#/"], ["Writing", "#/writing"], [t.title, ""]]);
   const club = t.title.replace(/\s*\(.*\)/, "");
   const st = { p1: t.p1.map(() => ""), p2: "", p3: t.p3.map(() => ""), v: 0, e1: "", e2: "", res: {} };
@@ -38,7 +40,7 @@ function wrRunner(view, t) {
     const P = $("#pane");
     if (i === 0) {
       P.innerHTML = `<div class="card"><p><b>Part 1.</b> You want to join the ${h(club)}. You have 5 messages from a member of the club. Write short answers (1–5 words) to each message. <span class="pill">⏱ 3 phút</span></p>
-      ${t.p1.map((q, k) => `<div class="p1row"><div>💬 ${h(q.q)}</div><div><input type="text" data-k="${k}" value="${h(st.p1[k])}" placeholder="1–5 words"><div class="small muted model-a" style="display:${st.res.p1 ? "block" : "none"}">Gợi ý: ${h(q.a)}</div></div></div>`).join("")}
+      ${t.p1.map((q, k) => `<div class="p1row"><div>💬 ${h(q.q)}</div><div><input type="text" data-k="${k}" value="${h(st.p1[k])}" placeholder="1–5 words"><div class="small muted model-a" style="display:${st.res.p1 ? "block" : "none"}">Gợi ý: ${h(q.a)}${V2 && V2.p1 && V2.p1[k] ? ` <br>📗 Bản mới: ${h(V2.p1[k])}` : ""}</div></div></div>`).join("")}
       <div class="row" style="margin-top:12px"><button class="btn primary" id="chk">✔ Chấm Part 1</button></div><div id="r"></div></div>`;
       $$("input[data-k]", P).forEach(inp => inp.oninput = () => { st.p1[+inp.dataset.k] = inp.value; persist(); });
       $("#chk").onclick = () => { st.res.p1 = Scorer.writingP1(st.p1); showP1(); };
@@ -49,7 +51,7 @@ function wrRunner(view, t) {
     if (i === 1) {
       P.innerHTML = `<div class="card"><p><b>Part 2.</b> You are a new member of the ${h(club)}. Fill in the form. Write in sentences. Use 20–30 words. <span class="pill">⏱ 7 phút</span></p>
       <div class="wr-email" style="border-left-color:var(--writing)"><b>📋 ${h(t.p2.q)}</b></div><textarea id="ta">${h(st.p2)}</textarea>${wcLine(st.p2, 20, 30)}
-      <div class="row" style="margin-top:8px"><button class="btn primary" id="chk">🤖 Chấm Part 2</button>${claudeBtn()}</div><div id="r"></div></div>`;
+      <div class="row" style="margin-top:8px"><button class="btn primary" id="chk">🤖 Chấm Part 2</button>${claudeBtn()}</div><div id="r"></div>${V2 && V2.p2 ? v2Box(`<p class="ex">${h(V2.p2)}</p>`) : ""}</div>`;
       bindWC($("#ta"), 20, 30, v => st.p2 = v);
       $("#chk").onclick = () => { st.res.p2 = Scorer.writingShort(st.p2, 20, 30, t.p2.q); st.res.p2.max = 5; st.res.p2.cefr = lvl(st.res.p2.score, 5); rep($("#r"), st.res.p2, st.p2, t.p2.a); };
       bindClaude("Part 2 form (20-30 words)", t.p2.q, () => st.p2, 5, r => { st.res.p2 = r; rep($("#r"), r, st.p2, t.p2.a); });
@@ -58,7 +60,7 @@ function wrRunner(view, t) {
     if (i === 2) {
       P.innerHTML = `<div class="card"><p><b>Part 3.</b> You are communicating with other members of the ${h(club)} in the chat room. Reply to their questions. Write in sentences. Use 30–40 words per answer. <span class="pill">⏱ 10 phút</span></p>
       ${t.p3.map((q, k) => `<div class="chat-q"><span class="avatar" style="background:var(--writing)">${h(q.who[0])}</span><div class="bubble"><b>${h(q.who)}:</b> ${h(q.q)}</div></div><textarea data-k="${k}">${h(st.p3[k])}</textarea>${wcLine(st.p3[k], 30, 40)}<div id="r${k}"></div>`).join("")}
-      <div class="row" style="margin-top:8px"><button class="btn primary" id="chk">🤖 Chấm Part 3</button></div></div>`;
+      <div class="row" style="margin-top:8px"><button class="btn primary" id="chk">🤖 Chấm Part 3</button></div>${V2 && V2.p3 ? v2Box(V2.p3.map((a, k) => `<p class="ex"><b>${h(t.p3[k] ? t.p3[k].who : "")}:</b> ${h(a)}</p>`).join("")) : ""}</div>`;
       $$("textarea[data-k]", P).forEach(ta => bindWC(ta, 30, 40, v => st.p3[+ta.dataset.k] = v));
       $("#chk").onclick = () => { st.res.p3 = t.p3.map((q, k) => { const r = Scorer.writingShort(st.p3[k], 30, 40, q.q); r.max = 5; r.cefr = lvl(r.score, 5); return r; }); showP3(); };
       if (st.res.p3) showP3();
@@ -73,7 +75,8 @@ function wrRunner(view, t) {
       <h4>📨 Task 1: ${h(V.tasks[0].task)}</h4><textarea id="e1" style="min-height:130px">${h(st.e1)}</textarea>${wcLine(st.e1, 40, 50)}<div id="r1"></div>
       <h4>🏛️ Task 2: ${h(V.tasks[1].task)}</h4><textarea id="e2" style="min-height:260px">${h(st.e2)}</textarea>${wcLine(st.e2, 120, 150)}<div id="r2"></div>
       <div class="row" style="margin-top:8px"><button class="btn primary" id="chk">🤖 Chấm Part 4</button>${claudeBtn()}</div>
-      ${t.alt ? `<details style="margin-top:12px"><summary>📌 Bài mẫu bản cập nhật (tài liệu “Writing practice: Photography, English”)</summary>${t.alt.map(x => `<h4>${h(x.label)}</h4><pre class="tpl ex">${h(x.text)}</pre>`).join("")}</details>` : ""}</div>`;
+      ${t.alt ? `<details style="margin-top:12px"><summary>📌 Bài mẫu bản cập nhật (tài liệu “Writing practice: Photography, English”)</summary>${t.alt.map(x => `<h4>${h(x.label)}</h4><pre class="tpl ex">${h(x.text)}</pre>`).join("")}</details>` : ""}
+      ${V2 && st.v === (V2.p4v || 0) ? v2Box(V2.p4 ? `<h4>📨 Email cho bạn</h4><pre class="tpl ex">${h(V2.p4[0] || "")}</pre><h4>🏛️ Email trang trọng</h4><pre class="tpl ex">${h(V2.p4[1] || "")}</pre>` : `<p class="small muted">Tài liệu mới chỉ có dàn ý ý tưởng cho email trang trọng (Version ${(V2.p4v || 0) + 1}):</p><pre class="tpl ex">${h(V2.note)}</pre>`) : ""}</div>`;
       $$("[data-v]", P).forEach(b => b.onclick = () => { st.v = +b.dataset.v; persist(); tab(3); });
       bindWC($("#e1"), 40, 50, v => st.e1 = v); bindWC($("#e2"), 120, 150, v => st.e2 = v);
       const show4 = () => { rep($("#r1"), st.res.e1, st.e1, V.tasks[0].sample, "Email thân mật"); rep($("#r2"), st.res.e2, st.e2, V.tasks[1].sample, "Email trang trọng"); };
