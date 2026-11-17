@@ -8,7 +8,7 @@ route("writing", (view, args) => {
   const ic = t => icons[t.title.toLowerCase().split(" ")[0]] || "✍️";
   view.innerHTML = `
   <div class="page-head t-writing"><div class="ico tinted">✍️</div><div><h1>Writing – ${WRITING_TESTS.length} đề có bài mẫu</h1>
-  <p>32 đề đủ 4 phần + 7 đề bổ sung (Beautiful Homes, Gardening, Cinema, English v3–v4, Design, Exercise). Mỗi đề gồm các phần như đề thật (5 tin nhắn · form 20–30 từ · 3 câu chat 30–40 từ · 2 email). Bài làm được đếm từ, kiểm tra bố cục, phát hiện lỗi và đối chiếu bài mẫu từ tài liệu "Đáp án 32 đề Aptis Writing". Đề có nhãn 📗 có thêm đáp án bản mới (đợt 6) ở cuối mỗi phần.</p></div></div>
+  <p>32 đề đủ 4 phần + các đề bổ sung (Beautiful Homes, Gardening, Cinema, English v3–v4, Design, Exercise, Sports Club) và đề mẫu chính thức British Council Version 1 (Travel Club). Mỗi đề gồm các phần như đề thật (5 tin nhắn · form 20–30 từ · 3 câu chat 30–40 từ · 2 email). Bài làm được đếm từ, kiểm tra bố cục, phát hiện lỗi và đối chiếu bài mẫu từ tài liệu "Đáp án 32 đề Aptis Writing". Đề có nhãn 📗 có thêm đáp án bản mới (đợt 6–7) ở cuối mỗi phần.</p></div></div>
   <div class="sec-title"><h2>📘 Bài học</h2></div>
   <div class="lesson-list t-writing">${LESSONS.filter(l => l.skill === "writing").map(l => `<a href="#/writing/lesson/${l.id}"><span class="em">${l.icon}</span><span><b>${h(l.title)}</b></span><span class="done">${Store.data.lessons[l.id] ? '<span class="pill good">✓ Đã học</span>' : ""}</span></a>`).join("")}</div>
   <div class="sec-title"><h2>📝 ${WRITING_TESTS.length} đề Writing</h2><span class="pill">${done}/${WRITING_TESTS.length} đã làm</span></div>
@@ -18,7 +18,7 @@ route("writing", (view, args) => {
 function wrRunner(view, t) {
   if (!t) return go("#/writing");
   const V2 = t.v2;
-  const v2Box = (inner, open) => `<details class="v2box" style="margin-top:12px;border:1px dashed var(--writing);border-radius:10px;padding:8px 12px"${open ? " open" : ""}><summary><b>📗 Đáp án bản mới (đợt 6 – tài liệu “${h(V2.src)}”)</b></summary>${inner}</details>`;
+  const v2Box = (inner, open) => `<details class="v2box" style="margin-top:12px;border:1px dashed var(--writing);border-radius:10px;padding:8px 12px"${open ? " open" : ""}><summary><b>📗 Đáp án bản mới (tài liệu “${h(V2.src)}”)</b></summary>${inner}</details>`;
   crumbs([["Tổng quan", "#/"], ["Writing", "#/writing"], [t.title, ""]]);
   const club = t.title.replace(/\s*\(.*\)/, "");
   const st = { p1: t.p1.map(() => ""), p2: "", p3: t.p3.map(() => ""), v: 0, e1: "", e2: "", res: {} };

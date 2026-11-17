@@ -810,5 +810,138 @@ window.LIBRARY=[
 "title": "Writing – Music Club 1 → đề 19",
 "file": "docs/wr-music-club-1.html",
 "batch": 6
+},
+{
+"id": "bc-practice-v1",
+"icon": "🏛️",
+"title": "Đề mẫu Aptis chính thức British Council – Version 1 (PDF)",
+"file": "docs/bc-practice-v1.pdf",
+"batch": 7
+},
+{
+"id": "wr-music-club-2",
+"icon": "✍️",
+"title": "Writing – Music Club 2 → đề 20",
+"file": "docs/wr-music-club-2.html",
+"batch": 7
+},
+{
+"id": "wr-nature-club",
+"icon": "✍️",
+"title": "Writing – Nature Club → đề 21",
+"file": "docs/wr-nature-club.html",
+"batch": 7
+},
+{
+"id": "wr-photography-club",
+"icon": "✍️",
+"title": "Writing – Photography Club → đề 22",
+"file": "docs/wr-photography-club.html",
+"batch": 7
+},
+{
+"id": "wr-photography-club-2",
+"icon": "✍️",
+"title": "Writing – Photography Club 2 → đề 23",
+"file": "docs/wr-photography-club-2.html",
+"batch": 7
+},
+{
+"id": "wr-power-fitness-club",
+"icon": "✍️",
+"title": "Writing – Power Fitness Club → đề 24",
+"file": "docs/wr-power-fitness-club.html",
+"batch": 7
+},
+{
+"id": "wr-reading-club",
+"icon": "✍️",
+"title": "Writing – Reading Club → đề 25",
+"file": "docs/wr-reading-club.html",
+"batch": 7
+},
+{
+"id": "wr-science-club",
+"icon": "✍️",
+"title": "Writing – Science Club → đề 26",
+"file": "docs/wr-science-club.html",
+"batch": 7
+},
+{
+"id": "wr-social-club-b-i-gi-ng",
+"icon": "✍️",
+"title": "Writing – Social Club (bài giảng) → đề 27",
+"file": "docs/wr-social-club-b-i-gi-ng.html",
+"batch": 7
+},
+{
+"id": "wr-technology-club",
+"icon": "✍️",
+"title": "Writing – Technology Club → đề 28",
+"file": "docs/wr-technology-club.html",
+"batch": 7
+},
+{
+"id": "wr-television-club",
+"icon": "✍️",
+"title": "Writing – Television Club → đề 29",
+"file": "docs/wr-television-club.html",
+"batch": 7
+},
+{
+"id": "wr-travel-club",
+"icon": "✍️",
+"title": "Writing – Travel Club → đề 30",
+"file": "docs/wr-travel-club.html",
+"batch": 7
+},
+{
+"id": "wr-walking-club-phone",
+"icon": "✍️",
+"title": "Writing – Walking Club – phone → đề 31",
+"file": "docs/wr-walking-club-phone.html",
+"batch": 7
+},
+{
+"id": "wr-walking-club-europe",
+"icon": "✍️",
+"title": "Writing – Walking Club – Europe → đề 32",
+"file": "docs/wr-walking-club-europe.html",
+"batch": 7
+},
+{
+"id": "sp-vocab-de-mau",
+"icon": "🗣️",
+"title": "Speaking – đề mẫu & từ vựng trả lời",
+"file": "docs/sp-vocab-de-mau.html",
+"batch": 7
+},
+{
+"id": "vocab-topics",
+"icon": "📚",
+"title": "Từ vựng Speaking & Writing theo chủ đề quen thuộc",
+"file": "docs/vocab-topics.html",
+"batch": 7
+},
+{
+"id": "wr-p4-khung-giai-phap",
+"icon": "🧩",
+"title": "Writing P4 – khung chung & 10 giải pháp dễ áp dụng",
+"file": "docs/wr-p4-khung-giai-phap.html",
+"batch": 7
+},
+{
+"id": "wr-vocab-de-mau",
+"icon": "✍️",
+"title": "Writing – đề mẫu & từ vựng",
+"file": "docs/wr-vocab-de-mau.html",
+"batch": 7
+},
+{
+"id": "bc-v1-listening",
+"icon": "🎧",
+"title": "Đề mẫu chính thức V1 – Listening (câu hỏi & đáp án, không có file nghe)",
+"file": "docs/bc-v1-listening.html",
+"batch": 7
 }
 ];
