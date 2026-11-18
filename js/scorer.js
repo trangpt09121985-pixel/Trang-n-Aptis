@@ -151,7 +151,7 @@ const Scorer = (() => {
     if (W < tmin) res.fixes.push(`Câu trả lời ngắn (${W} từ). Mục tiêu tối thiểu ${tmin} từ – áp dụng 5 mẹo phát triển ý: thêm lý do, thêm hoạt động thứ hai, thêm mặt đối lập, thêm thông tin cá nhân.`);
     if (andSo / sents > 1.6) res.fixes.push("Dùng 'and/so' quá nhiều – thay bằng Besides, Also, Therefore, However.");
     if (fillers >= 3) res.fixes.push(`Có ${fillers} từ đệm (um/uh). Hãy dùng câu "câu giờ" tự nhiên: "Well, let me think…", "That's an interesting question."`);
-    if (res.wpm && res.wpm < 70) res.fixes.push(`Tốc độ nói chậm (${res.wpm} từ/phút). Mục tiêu 90–130 từ/phút: luyện nói theo bài mẫu bằng chức năng đọc karaoke.`);
+    if (res.wpm && res.wpm < 70) res.fixes.push(`Tốc độ nói chậm (${res.wpm} từ/phút). Mục tiêu 90–130 từ/phút: luyện nói theo bài mẫu bằng nút "Nghe đọc bài mẫu".`);
     v.basic.forEach(b => res.fixes.push(`Lặp lại từ đơn giản “${b}” – thử thay bằng: ${BASIC[b]}.`));
     if (links.length < 2) res.fixes.push("Thiếu từ nối. Gợi ý: First, … Second, … Besides, … However, …");
     return res;
@@ -250,7 +250,7 @@ const Scorer = (() => {
       ${res.strengths?.length ? `<h4>👍 Điểm mạnh</h4><ul class="fb">${res.strengths.map(s => `<li>${h(s)}</li>`).join("")}</ul>` : ""}
       ${res.fixes?.length ? `<h4>🛠️ Cần cải thiện</h4><ul class="fb">${res.fixes.map(s => `<li>${h(s)}</li>`).join("")}</ul>` : ""}
       ${res.improved ? `<h4>✨ Bài viết lại gợi ý</h4><div class="model ex">${h(res.improved)}</div>` : ""}
-      ${model ? `<details><summary>📌 Bài mẫu tham khảo (từ tài liệu ôn tập)</summary><div class="model"><p class="ex" style="margin:0;background:none;border:none;padding:0">${h(model)}</p><div class="row" style="margin-top:8px"><button class="btn sm blue" data-karaoke>▶ Xem minh họa đọc mẫu (karaoke)</button></div><div class="kara-box transcript" style="margin-top:8px;display:none"></div></div></details>` : ""}
+      ${model ? `<details><summary>📌 Bài mẫu tham khảo (từ tài liệu ôn tập)</summary><div class="model"><p class="ex" style="margin:0;background:none;border:none;padding:0">${h(model)}</p><div class="row" style="margin-top:8px"><button class="btn sm blue" data-karaoke>▶ Nghe đọc bài mẫu</button></div><div class="kara-box transcript" style="margin-top:8px;display:none"></div></div></details>` : ""}
     </div>`;
   }
   function bindReport(el, model) {

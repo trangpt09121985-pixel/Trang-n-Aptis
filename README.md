@@ -6,7 +6,7 @@ Website tĩnh (HTML/CSS/JavaScript thuần, không cần máy chủ) hỗ trợ 
 
 | Mục | Nội dung |
 |---|---|
-| 🎤 Speaking | 14 đề hoàn chỉnh (4 phần, 42 hình ảnh) + 4 bộ Part 3 bổ sung + 7 bài học. Mô phỏng phòng thi: máy đọc câu hỏi, đồng hồ 30″/45″/2′ (Part 4 có 1′ chuẩn bị), ghi âm, chuyển giọng nói thành chữ, **chấm điểm AI** theo 5 tiêu chí Aptis, checklist tả tranh 8 bước, phát hiện lỗi ngữ pháp, bài mẫu đọc karaoke. |
+| 🎤 Speaking | 14 đề hoàn chỉnh (4 phần, 42 hình ảnh) + 4 bộ Part 3 bổ sung + 7 bài học. Mô phỏng phòng thi: máy đọc câu hỏi, đồng hồ 30″/45″/2′ (Part 4 có 1′ chuẩn bị), ghi âm, chuyển giọng nói thành chữ, **chấm điểm AI** theo 5 tiêu chí Aptis, checklist tả tranh 8 bước, phát hiện lỗi ngữ pháp, nghe đọc bài mẫu. |
 | ✍️ Writing | 32 đề có đáp án mẫu (đủ 4 phần), bấm giờ 50 phút, đếm từ, chấm bố cục email thân mật/trang trọng, lưu bài làm tự động. 4 bài học khung câu và email. |
 | 📖 Reading | 2 đề hoàn chỉnh (Part 1–4, 29 câu/đề), giải thích tiếng Việt, tô vàng câu bằng chứng trong bài đọc. |
 | 🎧 Listening | 2 đề hoàn chỉnh, giọng đọc nam/nữ bằng Text-to-Speech, giới hạn 2 lượt nghe, lời thoại tô vàng câu chứa đáp án; bảng ghi nhớ Part 3 (Man/Woman/Both) theo 15 chủ đề. |
@@ -19,6 +19,7 @@ Website tĩnh (HTML/CSS/JavaScript thuần, không cần máy chủ) hỗ trợ 
 | 🎙️ Cập nhật đợt 5 | Thêm 18 đề Speaking đầy đủ có ảnh và đáp án mẫu (Speaking Test 22–39 = Mai Hien Test 8–23, 25, 26). Mỗi đề có 4 phần như đề thật; tài liệu gốc từng đề nằm trong Thư viện, nhóm "Đợt 5". Bộ tài liệu chưa có Test 24. |
 | ✍️ Cập nhật đợt 6 | Thêm Speaking Test 40 (Mai Hien Test 27 – a time you got a gift). Bổ sung đáp án bản mới cho 19 đề Writing W01–W19 (nhãn 📗; hiển thị ở cuối Part 1–4 của từng đề); riêng Business Club (W04) chỉ có dàn ý ý tưởng cho Part 4 phiên bản 2. Tài liệu gốc nằm trong Thư viện, nhóm "Đợt 6". |
 | 🏛️ Cập nhật đợt 7 | Thêm đề mẫu chính thức của British Council (Aptis General Practice tests 04/2020 – Version 1): Grammar & Vocabulary (C03), Reading (R03) chấm theo đáp án chính thức kèm lời giải tiếng Việt; Speaking Test 41 và Writing W41 (Travel Club) với bài mẫu do giáo viên soạn vì đề gốc không có đáp án; Listening chỉ có câu hỏi và đáp án trong Thư viện (không có file nghe). Bổ sung đáp án bản mới cho Writing W20–W32 (nhãn 📗). Thư viện nhóm "Đợt 7" có thêm 4 tài liệu từ vựng – khung bài (Speaking Vocab, Từ vựng các topic quen thuộc, Writing P4 khung chung & 10 giải pháp, Writing vocab). |
+| 🗓️ Lộ trình 60 ngày (đợt 8) | Mục mới "Lộ trình 60 ngày" trên thanh menu: 60 ngày học chia 5 giai đoạn từ dễ đến khó (nền tảng → Part 2–3 → Part 4 → luyện đề hoàn chỉnh → thi thử bằng đề mẫu chính thức). Mỗi ngày 2–4 việc, mỗi việc có liên kết mở thẳng bài học/đề luyện trong website, ghi chú cách làm và thời lượng. Đặt ngày thi để lộ trình tự đếm ngược (Ngày 60 là ngày liền trước ngày thi); trang Tổng quan hiển thị việc cần làm hôm nay. Bỏ chữ "karaoke" trên các nút nghe bài mẫu. |
 | 📊 Tổng quan | Tiến độ từng kỹ năng, điểm tốt nhất so với ngưỡng B1/B2, đếm ngược ngày thi, lộ trình 4 tuần. |
 
 Ngưỡng CEFR dùng trong dashboard lấy từ *Aptis Scoring System v2.1* (British Council). Mọi điểm trong dashboard là **điểm ước lượng để luyện tập**, không phải điểm chính thức.

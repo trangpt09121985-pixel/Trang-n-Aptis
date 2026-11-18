@@ -26,8 +26,8 @@ route("home", (view) => {
     <div class="card"><h3>📊 Điểm tốt nhất so với ngưỡng B1 / B2</h3><p class="small muted" style="margin-top:-6px">Thang 0–50 · ngưỡng theo Aptis Scoring System (British Council). Rê chuột lên thanh để xem chi tiết.</p><div id="chart" class="chart-wrap"></div>
       <div class="legend"><span><i style="background:#2a78d6"></i>Điểm tốt nhất</span><span><i style="background:#8a8880;height:10px;width:2px"></i>Ngưỡng B1</span><span><i style="background:#1b1a18;height:10px;width:2px"></i>Ngưỡng B2</span></div></div>
     <div class="card"><h3>🕘 Hoạt động gần đây</h3>${Store.data.log.length ? `<ul class="activity">${Store.data.log.slice(0, 8).map(l => `<li>${SKILLS[l.skill]?.icon || "•"} <b>${h(l.title)}</b> – ${l.scale}/50 <span class="muted small">· ${new Date(l.date).toLocaleString("vi-VN", { dateStyle: "short", timeStyle: "short" })}</span></li>`).join("")}</ul>` : `<p class="muted">Chưa có bài làm nào. Bắt đầu với <a href="#/speaking/test/S01">Speaking Test 1</a> hoặc <a href="#/core/test/C01">Grammar & Vocab Test 1</a>.</p>`}</div></div>
-  <div class="sec-title"><h2>🗓️ Lộ trình gợi ý 4 tuần</h2><span class="small muted">Đánh dấu khi hoàn thành – lưu trên trình duyệt</span></div>
-  <div class="grid g4" id="plan"></div>
+  <div class="sec-title"><h2>🗓️ Lộ trình 60 ngày – việc cần làm hôm nay</h2><a class="small" href="#/plan">Xem toàn bộ lộ trình →</a></div>
+  ${planTodayCard()}
   <div class="sec-title"><h2>🚀 Truy cập nhanh</h2></div>
   <div class="grid g4">
     <a class="card skill-card t-speaking" href="#/speaking/bank"><div class="head"><span class="em">🏛️</span><b>Đề thật Speaking</b></div><span class="small muted">${SPEAKING_BANK.P2.length + SPEAKING_BANK.P3.length} tranh + ${SPEAKING_BANK.P4.length} đề Part 4, luyện & chấm AI.</span></a>
@@ -37,14 +37,6 @@ route("home", (view) => {
     <a class="card skill-card t-tips" href="#/tips"><div class="head"><span class="em">💡</span><b>Tổng hợp mẹo thi</b></div><span class="small muted">Mẹo theo từng kỹ năng + nguồn chính thức.</span></a></div>`;
   if ($("#exs")) $("#exs").onclick = () => { const v = $("#exd").value; if (!v) return toast("Chọn ngày thi trước."); Store.setSetting("examDate", v); render(); };
   drawChart($("#chart"), B);
-  const PLAN = [
-    ["Tuần 1 – Nền tảng", ["Học 3 bài Grammar & Vocab", "Làm Core Test 1", "Học 5 mẹo phát triển ý + tả tranh", "Speaking Test 1–2", "Writing: học khung Part 1–3"]],
-    ["Tuần 2 – Kỹ năng đọc nghe", ["Reading Test 1", "Listening Test 1", "Học bảng nhớ Listening P3", "Speaking Test 3–5", "Writing Đề 1–4"]],
-    ["Tuần 3 – Viết & nói nâng cao", ["Học khung email Part 4", "Writing Đề 5–12", "Speaking Test 6–10", "Học 4 câu chuyện Part 4", "Core Test 2"]],
-    ["Tuần 4 – Thi thử", ["Reading Test 2 (bấm giờ)", "Listening Test 2 (bấm giờ)", "Speaking Test 11–14 (thi liên tục)", "Writing 3 đề bấm giờ 50′", "Ôn mẹo thi + bài lỗi sai"]]];
-  const pl = Store.data.plan ||= {};
-  $("#plan").innerHTML = PLAN.map(([t, items], wi) => `<div class="card"><h3>${t}</h3>${items.map((it, ii) => { const k = wi + "-" + ii; return `<label class="row small" style="gap:8px;margin:5px 0;flex-wrap:nowrap;align-items:flex-start"><input type="checkbox" data-k="${k}" ${pl[k] ? "checked" : ""} style="margin-top:4px">${h(it)}</label>`; }).join("")}</div>`).join("");
-  $$("#plan input").forEach(c => c.onchange = () => { pl[c.dataset.k] = c.checked; Store.save(); });
 });
 
 /* Biểu đồ thanh ngang: điểm tốt nhất mỗi kỹ năng + vạch ngưỡng B1/B2 (một chuỗi dữ liệu → một màu) */

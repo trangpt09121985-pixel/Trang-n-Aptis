@@ -917,10 +917,10 @@ window.LIBRARY=[
 "batch": 7
 },
 {
-"id": "vocab-topics",
+"id": "vocab-topics-quen-thuoc",
 "icon": "📚",
 "title": "Từ vựng Speaking & Writing theo chủ đề quen thuộc",
-"file": "docs/vocab-topics.html",
+"file": "docs/vocab-topics-quen-thuoc.html",
 "batch": 7
 },
 {
